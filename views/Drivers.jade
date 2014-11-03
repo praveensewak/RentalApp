@@ -1,0 +1,32 @@
+//
+   Created by Mukarram on 9/3/2014.
+
+mixin options(array)
+    each item in array
+        if item === query.status
+            option(selected="selected") #{item}
+        else
+            option #{item}
+
+- query = typeof query != 'undefined' ? query : {};
+- query.status = typeof query.status != 'undefined' ? query.status : ''
+- query.firstname = typeof query.firstname != 'undefined' ? query.firstname : ''
+- query.lastname = typeof query.lastname != 'undefined' ? query.lastname : ''
+
+div(style="display:table;width:850px;float:right;")
+    form#driver_admin-form(class="form-inline" action="/api/GetDriversAdmin" method="POST" role="form" style="padding-top:10px;display: table-cell; vertical-align: middle; text-align:center;")
+        div(style="float:left")
+            div(class="form-group")
+                div(class="input-group")
+                    div(class="input-group-addon") First Name
+                    input(placeholder="First Name" class="form-control" style="width:150px" type="text" id="first_name" name="first_name" onfocus="this.type='text'" onblur="this.type='text'" value="#{query.firstname}")
+            div(class="form-group")
+                div(class="input-group")
+                    div(class="input-group-addon") Last Name
+                    input(placeholder="Last Name" class="form-control" style="width:150px" type="text" id="last_name" name="last_name" onfocus="this.type='text'" onblur="this.type='text'" value="#{query.lastname}")
+                button(type="button" class="btn btn-default")#btnFilter Filter
+        div(style="float:right;margin-right:5px;")
+            div(class="form-group")
+                span(style="font-weight:bold;") Records Per Page
+                select#PagingDropDown(class="form-control" name="pageSize")
+                    +options(['20', '50', '100'])

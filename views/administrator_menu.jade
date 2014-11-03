@@ -1,0 +1,39 @@
+//
+   Created by Mukarram on 9/12/2014.
+
+- user = typeof(udata) != 'undefined' ? udata : { }
+nav
+    .header
+        .figure.user
+            a(href='/my_account')
+                -if(user.user_image != 'undefined' || user.user_image != ''){
+                    img#imagePreviewMain(src=user.user_image)
+                -}else{
+                    img.user-logo(src="/images/user-logo-large.png")
+                -}
+            figcaption.user-name #{user.first_name}
+    ul
+        li
+            img(src="/images/my-trip-icon.png")
+            span.text
+                a(href='/admin/trips?isWeb=true') Home
+        li
+            img(src="/images/profile-icon.png")
+            span.text
+                a(href='/my_account') Profile
+        li
+            img(src="/images/my-trip-icon.png")
+            span.text
+                a(href='/Driver_Admin') Driver Administration
+        li
+            img(src="/images/my-trip-icon.png")
+            span.text
+                a(href='/Passenger_Admin') Passenger Administration
+        li
+            img(src="/images/my-trip-icon.png")
+            span.text
+                a(href='/account_security') Change Password
+        li
+            img(src="/images/logout-icon.png")
+            span.text
+                a(href='#Logout').logout Log Out

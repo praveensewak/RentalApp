@@ -1,0 +1,24 @@
+//
+   Created by Asif on 7/2/2014.
+extends layout
+block content
+    #login-container
+        form( method="post")#verify-form.well.span4
+            h1 Welcome to taxi!
+            p.subheading Please enter you verification code to verify your account
+            label Verification code
+            input(type="text", name="registration_code", id='registration_code-tf').span4.required
+            button(type="submit")#btn-verify.btn.btn-primary
+                i.icon-lock.icon-white
+                | Verify
+            div.clear-fix
+    include modals/alert
+    include modals/form-errors
+block scripts
+    script(src='/vendor/jquery.min.js')
+    script(src='/vendor/jquery.form.js')
+    script(src='/vendor/bootstrap-modal.js')
+    script(src='/vendor/bootstrap-transition.js')
+    script(src='/js/views/verify.js')
+    script(src='/js/controllers/verifyController.js')
+    script(src='/js/form-validators/verifyValidator.js')

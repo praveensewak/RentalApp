@@ -1,0 +1,10 @@
+//
+   Created by Mukarram on 8/19/2014.
+// preset form values if we receive a userdata object //
+- user = typeof(udata) != 'undefined' ? udata : { }
+if user.user_type == 'admin'
+    include administrator_menu
+else if user.user_type == 'driver'
+    include driver_menu
+else
+    include passenger_menu

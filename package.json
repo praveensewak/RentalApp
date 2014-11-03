@@ -1,0 +1,55 @@
+{
+  "name": "taxi",
+  "version": "0.1.0",
+  "description": "",
+  "main": "server.js",
+  "author": {
+    "name": "naveed",
+    "email": "naveed.jabbar@gmail.com"
+  },
+  "dependencies": {
+    "async": "^0.9.0",
+    "bcrypt-nodejs": "0.0.3",
+    "connect-flash": "~0.1.1",
+    "ejs": "~0.8.5",
+    "ejs-locals": "~1.0.2",
+    "express": "~3.4.8",
+    "express-flash": "0.0.2",
+    "jade": "^1.1.5",
+    "moment": "^1.7.2",
+    "mongodb": "~1.3.23",
+    "mongoose": ">= 0.0.0",
+    "nodemailer": "^0.7.0",
+    "passport": "~0.2.0",
+    "passport-local": "~1.0.0",
+    "socket.io": "~0.9.16",
+    "stylus": "^0.31.0",
+    "twilio": "^1.6.0",
+    "underscore": "~1.6.0",
+    "vash": "~0.7.7",
+    "mongoose-auto-increment":"*",
+     "validator" :"~3.16.0",
+      "google-distance-matrix":"*",
+      "google-distance":"*",
+      "parse-duration":"*",
+      "request":"*",
+      "qs":"*",
+      "urban-airship-push":"*",
+      "apn":"*",
+      "geocoder":"*",
+      "underscore.string":"*",
+      "googlemaps":"*"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-nodemon": "~0.2.0"
+  },
+  "subdomain":"xicab",
+  "scripts":{
+    "start":"node server.js"
+
+  },
+  "engines": {
+    "node": "0.10.x"
+  }
+}

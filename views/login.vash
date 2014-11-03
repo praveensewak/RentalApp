@@ -1,0 +1,74 @@
+@html.extend('layout', function(model){
+
+  @html.block("body", function (model) {
+
+    <script>
+
+
+  $().ready(function() {
+
+  	var container = $('#div_notification');
+
+  	$("#login").validate({
+  	        errorContainer: container,
+      		errorLabelContainer: $("ol", container),
+      		wrapper: 'li',
+        rules: {
+            username:{
+            required: true
+          },
+          password:{
+                      required: true
+                    }
+        },
+        messages: {
+          username: {
+            required: "Please enter user name"
+          },
+          password: {
+                      required: "Please enter password"
+                    }
+        }
+      });
+
+  	$(".cancel").click(function() {
+  		validator.resetForm();
+  	});
+  });
+
+    </script>
+
+    @if (model.message) {
+      <p>@model.message</p>
+    }
+
+              <div class="container" id='div_notification'>
+              	<h4>Please fix following errors in order to login.</h4>
+              	<ol>
+              	    <li></li>
+              	</ol>
+              </div>
+
+    <form action="/login" method="post" role="form" class="form-horizontal" name="login" id="login">
+      <div class="form-group">
+        <label class="control-label col-lg-1">Username</label>
+        <div class="col-lg-5">
+          <input type="text" name="username" class="form-control" placeholder="username" maxlength="60"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-lg-1">Password</label>
+        <div class="col-lg-5">
+          <input type="password" name="password" class="form-control" placeholder="password" maxlength="15"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-offset-1 col-lg-5"><input type="submit" value="Submit" class="btn btn-primary" />  </div>
+      </div>
+       <div class="form-group">
+              <p class="text-muted">Or <a href="/forgot">click here</a> if you forget your password.</p>
+            </div>
+    </form>
+
+  })
+})

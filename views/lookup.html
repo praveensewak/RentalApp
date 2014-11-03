@@ -1,0 +1,93 @@
+<link rel="stylesheet" href="\lib\bootstrap\dist\css\bootstrap.min.css"/>
+<link rel="stylesheet" href="\lib\bootstrap\dist\css\bootstrap-theme.min.css"/>
+<link rel="stylesheet" href="\css\toaster.css"/>
+
+
+
+<style>
+    body {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #eee;
+    }
+
+    .form-signin {
+        max-width: 550px;
+        padding: 15px;
+        margin: 0 auto;
+    }
+    .form-signin .form-signin-heading,
+    .form-signin .checkbox {
+        margin-bottom: 10px;
+    }
+    .form-signin .checkbox {
+        font-weight: normal;
+    }
+    .form-signin .form-control {
+        position: relative;
+        height: auto;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 10px;
+        font-size: 12px;
+    }
+    .form-signin .form-control:focus {
+        z-index: 2;
+    }
+    .form-signin input[type="email"] {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+    .form-signin input[type="password"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+    .form-signin input[type="button"], a {
+        margin-top: 10px;
+
+
+    }
+
+</style>
+
+<!--<div class="container">
+
+    <form class="form-signin" role="form" _lpchecked="1">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <input type="email" class="form-control " placeholder="Email address" required="" autofocus="" autocomplete="off" >
+        <input type="password" class="form-control" placeholder="Password" required="" autocomplete="off" >
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+
+</div>-->
+<script src="/lib/angular/angular.min.js"></script>
+<script src="/lib/angular/angular-animate.js"></script>
+<script src="/vendor/toaster.js"></script>
+<script src="/js/controllers/pushCtrl.js"></script>
+
+
+<div class="container" ng-app="app" ng-controller="pushController">
+
+<div class="row" >
+    <toaster-container toaster-options="{'time-out': 1400}"></toaster-container>
+
+    <form class="form-signin" action="">
+
+            <label for="id_device_token">Passenger Email</label><input class="form-control" id="id_device_token" maxlength="72" name="device_token" type="email"  data-ng-model="data.device_tokens" value="" >
+            <label for="id_alias">Driver Email</label> <input class="form-control" id="id_alias" maxlength="255" name="alias" type="email" data-ng-model="data.alias">
+
+                <input type="button" class="btn btn-md btn-primary"  ng-click="check()" value="ADD!"/>
+                <a class="btn btn-md btn-info " href="/">Cancel</a>
+    </form>
+
+</div>
+</div>
+

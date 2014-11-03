@@ -1,0 +1,85 @@
+//
+   Created by Asif on 8/23/2014.
+- user = typeof(udata) != 'undefined' ? udata : { }
+- user_preference = typeof(pdata) != 'undefined' ? pdata : { }
+// store the userId on the client side in a hidden input field //
+input(type='hidden', value= user._id)#userId
+#account-form-container.mainbox.col-md-4.col-sm-offset-2(style='margin-top: 25px;width:850px;')
+    .panel.panel-info
+        .panel-heading
+            .panel-title Preferences - Please specify your preferences
+        .panel-body(style='padding-top: 30px;')
+            #update-payment-MSG
+                div.alert.hide(style='padding: 10px;')
+            form( method="post")#account-form.form-horizontal(role='form')
+                .input-group#tip-cg(style='margin-top: 10px;margin-bottom: 10px;')
+                    span.input-group-addon(style='width:200px;') Tip (%)
+                    select#tip-tf(style='width:580px;').form-control(name='tip', placeholder='Tip', disabled='disabled')
+                        if user_preference.tip == ''
+                            option(value='', selected='true') Select
+                        else
+                            option(value='') Select
+                        if user_preference.tip == '5'
+                            option(value='5', selected='true') 5
+                        else
+                            option(value='5') 5
+                        if user_preference.tip == '10'
+                            option(value='10', selected='true') 10
+                        else
+                            option(value='10') 10
+                        if user_preference.tip == '15'
+                            option(value='15', selected='true') 15
+                        else
+                            option(value='15') 15
+                        if user_preference.tip == '20'
+                            option(value='20', selected='true') 20
+                        else
+                            option(value='20') 20
+                        if user_preference.tip == '25'
+                            option(value='25', selected='true') 25
+                        else
+                            option(value='25') 25
+                        if user_preference.tip == '30'
+                            option(value='30', selected='true') 30
+                        else
+                            option(value='30') 30
+                        if user_preference.tip == '35'
+                            option(value='35', selected='true') 35
+                        else
+                            option(value='35') 35
+                        if user_preference.tip == '40'
+                            option(value='40', selected='true') 40
+                        else
+                            option(value='40') 40
+                        if user_preference.tip == '45'
+                            option(value='45', selected='true') 45
+                        else
+                            option(value='45') 45
+                        if user_preference.tip == '50'
+                            option(value='50', selected='true') 50
+                        else
+                            option(value='50') 50
+                .input-group#favourite_affiliate-cg(style='margin-top: 10px;margin-bottom: 10px;')
+                    span.input-group-addon(style='width:200px;') Favourite Affiliate
+                    select#favourite_affiliate-tf(style='width:580px;').form-control(name='favourite_affiliate', value= user_preference.favourite_affiliate, disabled='disabled',placeholder='Favourite Affiliate')
+                        option(value='') Select
+                        each item, i in affiliates
+                            if item._id == user_preference.favourite_affiliate
+                                option(value='#{item._id}', selected='true') #{item.name}
+                            else
+                                option(value='#{item._id}') #{item.name}
+                .input-group(style='margin-top: 10px;margin-bottom: 10px;')
+                    span.input-group-addon(style='width:200px;')
+                        div State
+                    input#state-tf(style='width:580px;').form-control(type='text', name='state', value= user_preference.state, placeholder='State',disabled='disabled', maxlength=30)
+                .input-group(style='margin-top: 10px;margin-bottom: 10px;')
+                    span.input-group-addon(style='width:200px;')
+                        div City
+                    input#city-tf(style='width:580px;').form-control(type='text', name='city', value= user_preference.city, placeholder='City',disabled='disabled', maxlength=30)
+                .form-actions
+                button(type='button')#account-form-edit.btn
+                button(type='button')#account-form-cancel.btn.hide
+                button(type='submit')#account-form-btn2.btn.hide
+// display form errors in a custom modal window //
+include modals/form-errors
+include modals/lost-password

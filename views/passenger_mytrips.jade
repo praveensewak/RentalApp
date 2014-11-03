@@ -1,0 +1,27 @@
+//
+   Created by Mukarram on 8/28/2014.
+
+extends layout
+block content
+    include header
+    .section.container
+        include nav_menu
+        section.content
+            span.left-caption Functionality coming soon
+        hr
+        footer
+            div.row
+                div.col-lg-12
+                    p Copyright &copy;  2014
+    include modals/alert
+    include modals/confirm
+block scripts
+    script(src='/lib/jquery/jquery-1.10.2.min.js')
+    script(src='/lib/bootstrap/dist/js/bootstrap.min.js')
+    script(src='/vendor/jquery.form.js')
+    script(src='/lib/bootstrap/js/modal.js')
+    script(src='/lib/bootstrap/js/transition.js')
+    script(src='/js/controllers/homeController.js')
+    script(src='/js/views/my_account.js')
+    script(src='/js/controllers/myAccountController.js')
+    script(src='/js/form-validators/accountValidator.js')

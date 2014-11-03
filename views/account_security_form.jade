@@ -1,0 +1,34 @@
+//
+   Created by Asif on 8/27/2014.
+//
+   Created by Asif on 7/19/2014.
+// preset form values if we receive a userdata object //
+- user = typeof(udata) != 'undefined' ? udata : { }
+// store the userId on the client side in a hidden input field //
+input#userId(type='hidden', value= user._id)
+#account-form-container.mainbox.col-md-4.col-sm-offset-2(style='margin-top: 25px;width:850px;')
+    .panel.panel-info
+        .panel-heading
+            .panel-title Change Password - Manage your account secrets
+        .panel-body(style='padding-top: 30px;')
+            #update-payment-MSG
+                div.alert.hide(style='padding: 10px;')
+            form( method="post")#account-form.form-horizontal(role='form')
+                .input-group(style='margin-top: 10px;margin-bottom: 10px;')
+                    span.input-group-addon(style='width:200px;')
+                        div Current Password
+                    input#current_password-tf(style='width:650px;').form-control(type='password', name='current_password', value= '', placeholder='Current Password', maxlength=20)
+                .input-group(style='margin-top: 10px;margin-bottom: 10px;')
+                    span.input-group-addon(style='width:200px;')
+                        div New Password
+                    input#new_password-tf(style='width:650px;').form-control(type='password', name='new_password', value= '', placeholder='New Password', maxlength=20)
+                .input-group(style='margin-top: 10px;margin-bottom: 10px;')
+                    span.input-group-addon(style='width:200px;')
+                        div Confirm Password
+                    input#confirm_password-tf(style='width:650px;').form-control.disabled(type='password', name='confirm_password', value= '', placeholder='Confirm New Password', maxlength=20)
+                .form-actions
+                button(type='button')#account-form-edit.btn.hide
+                button(type='button')#account-form-cancel.btn
+                button(type='submit')#account-form-btn2.btn
+// display form errors in a custom modal window //
+include modals/form-errors

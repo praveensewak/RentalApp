@@ -1,0 +1,142 @@
+extends layout
+mixin driver_trip_tr_detailed(o)
+    tr(style="display:none")
+        td(colspan="7" style="padding-left: 0;")
+            div.details
+                div.sec.video-container
+                    img(src="https://www.google.com/maps/api/staticmap?center="+o.trip.trip_start_latitude+","+o.trip.trip_start_longitude+"&zoom=12&maptype=roadmap&sensor=fals&size=200x200&markers=size:tiny%7color:blue%7Clabel:C%7C"+o.trip.trip_start_latitude+","+o.trip.trip_start_longitude+"&markers=size:tiny%7color:green%7Clabel:G%7C"+o.trip.trip_end_latitude+","+o.trip.trip_end_longitude+"&path=color:0x0000ff|weight:5|"+o.trip.trip_start_latitude+","+o.trip.trip_start_longitude+"|"+o.trip.trip_end_latitude+","+o.trip.trip_end_longitude+"&key=AIzaSyBvj2J7McZL_SkQDRC-Rc8RKvHM1Mvw0GA")
+                div.sec
+                    div.payment-details
+                        div.fare= o.payment
+                        div.payment-method
+                            img(src="../../images/visa-card-icon.png")
+                            span.card_number ••••5660
+                        div.payment-time= moment(o.trip_start_datetime).format('MMMM Do YYYY, h:mm:ss a')
+                        div.ss-container
+                            div
+                                div.trip-start
+                                    div.icon-circle.red
+                                    div
+                                        div.time=moment(o.trip_start_datetime).format('h:mm:ss a')
+                                        div.place= o.trip.trip_start_address
+                                div.trip-stop
+                                    div.icon-circle.blue
+                                    div
+                                        div.time=moment(o.trip_end_datetime).format('h:mm:ss a')
+                                        div.place= o.trip.trip_end_address
+                div.sec
+                    div.rating
+                        img(src="../../images/star-icon.png")
+                        img(src="../../images/star-icon.png")
+                        img(src="../../images/star-icon.png")
+                        img(src="../../images/star-icon.png")
+                        img(src="../../images/star-icon.png")
+                    form(method="GET",action="/api/trip/#{o.trip.tripid}/1/1")
+                        input(type="hidden", name="isWeb", value="true")
+                        button(type="submit" ) view details
+
+
+mixin driver_trip_tr(o)
+
+    tr
+        td= moment(o.trip_start_datetime).format('MM-DD-YYYY')
+        td= o.trip_start_address
+        td= o.first_name
+        td= o.total_miles
+        td= moment(o.total_duration).format('h:mm:ss')
+        td= '$'+ _.str.numberFormat(o.trip_grandtotal, 2)
+        td= o.status
+    +driver_trip_tr_detailed(o)
+mixin passenger_trip_tr(o)
+    -o.miles = o.trip?o.trip.trip_miles:'--'
+    -o.duration=o.trip?moment(o.trip.trip_duration).format('h:mm:ss'):'--'
+    -o.fare=o.trip?'$'+ _.str.numberFormat(o.trip.trip_fare, 2):'--'
+    -o.first_name=o.first_name?o.first_name:'--'
+    -o.status=o.trip?o.trip.trip_status:o.passenger_request_status
+    tr
+        td= moment(o.request_datetime).format('MM-DD-YYYY')
+        td= o.request_city
+        td= o.first_name
+        td= o.miles
+        td= o.duration
+        td= o.fare
+        td= o.status
+    -if(o.trip){
+    +driver_trip_tr_detailed(o)
+    -}else{
+    tr(style="display:none")
+    -}
+
+block content
+    include header
+    section.container
+        include nav_menu
+        // preset form values if we receive a userdata object //
+        - user = typeof(udata) != 'undefined' ? udata : { }
+        -if(user.user_type == 'passenger'){
+            section.content.home
+                table.trips
+                    caption
+                        span.left-caption My Trips
+                        include passenger_search_form
+                    thead
+                        tr
+                            th(data-sort="date") Date
+                            th(data-sort="string") City
+                            th(data-sort="string") Driver
+                            th(data-sort="int") Distance
+                            th(data-sort="int") Duration
+                            th(data-sort="int") Fare
+                            th(data-sort="string") Status
+                    tbody
+                        if data.length>0
+                            each trip in data
+                                +passenger_trip_tr(trip)
+                        else
+                            tr
+                                td(colspan="7" style="display=table-cell")
+                                    h1
+                                        center no record aviable
+        -}else{
+
+
+
+           section.content.home
+                table.trips
+                    caption
+                        span.left-caption My Trips
+                        include driver_search_form
+                    thead
+                        tr
+                            th(data-sort="date") Date
+                            th(data-sort="string") City
+                            th(data-sort="string") Passenger
+                            th(data-sort="int") Distance
+                            th(data-sort="int") Duration
+                            th(data-sort="int") Payment
+                            th(data-sort="string") Status
+                    tbody
+                        if data.length>0
+                            each trip in data
+                                +driver_trip_tr(trip)
+                        else
+                            tr
+                                td(colspan="7" style="display=table-cell")
+                                    h1
+                                        center no record aviable
+        -}
+
+    include modals/alert
+    include modals/confirm
+block scripts
+    script(src='/lib/jquery/jquery-1.10.2.min.js')
+    script(src='/lib/bootstrap/dist/js/bootstrap.min.js')
+    script(src='/vendor/jquery.form.js')
+    script(src='/lib/plugin/jExpand.js')
+    script(src='/lib/plugin/stupidtable.js')
+    script(src='/lib/bootstrap/js/modal.js')
+    script(src='/lib/bootstrap/js/transition.js')
+    script(src='/js/form-validators/accountValidator.js')
+    script(src='https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&dummy=.js')
+    script(src='/js/views/home.js')
+    script(src='/js/controllers/homeController.js')

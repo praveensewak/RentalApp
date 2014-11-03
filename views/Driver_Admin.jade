@@ -1,0 +1,37 @@
+//
+   Created by Mukarram on 8/28/2014.
+
+extends layout
+block content
+    include header
+    section.container
+        include nav_menu
+        section.content
+            table#drivers_admin_container.gridtable
+                caption(style="height:100px;")
+                    span.left-caption Driver(s) Admin
+                    include Drivers
+                thead
+                    tr
+                        th(data-sort="string") First Name
+                        th(data-sort="string") Last Name
+                        th(data-sort="string") Chauffeur #
+                        th(data-sort="string") Chaffeur State
+                        th(data-sort="string") Status
+                        th(data-sort="string") Actions
+                #update-profile-MSG
+                    div.alert.hide(style='padding: 10px;margin:10px;')
+                tbody
+            span#paging.hide()
+    include modals/alert
+    include modals/confirm3
+    include modals/view-update-driver
+block scripts
+    script(src='/lib/jquery/jquery-1.10.2.min.js')
+    script(src='/lib/bootstrap/dist/js/bootstrap.min.js')
+    script(src='/vendor/jquery.form.js')
+    script(src='/lib/jquery/jquery.mask.js')
+    script(src='/js/views/driver_admin.js')
+    script(src='/lib/bootstrap/js/modal.js')
+    script(src='/lib/bootstrap/js/transition.js')
+    script(src='/js/controllers/homeController.js')

@@ -1,0 +1,49 @@
+//
+   Created by Asif on 7/19/2014.
+
+// preset form values if we receive a userdata object //
+- user = typeof(udata) != 'undefined' ? udata : { }
+// store the userId on the client side in a hidden input field //
+input#userId(type='hidden', value= user._id)
+#account-form-container.mainbox.col-md-4.col-sm-offset-2(style='margin-top: 25px;width:850px;')
+    .panel.panel-info
+        .panel-heading
+            .panel-title Profile - Tell us about your self
+        .panel-body(style='padding-top: 30px;')
+            #update-payment-MSG
+                div.alert.hide(style='padding: 10px;')
+            form( method="post" action="/api/upload_profile_image" enctype="multipart/form-data")#profile_image-form.form-horizontal(role='form')
+                div(style='float:left;width:200px;margin-top: 10px;margin-bottom: 10px;')
+                    .profile_image
+                        .image_attachment(style='float:left;width:200px;')
+                            img#imagePreviewProfile(src=user.user_image)
+                        div.fileUpload.btn.btn-primary(style='font-size:20px;width:190px;height:40px;margin-left:0px;')
+                            span Upload
+                            input#uploadFile.upload(type='file', name='image')(style='width:190px;margin-left:0px;margin-top:-25px;opacity: 0;filter: alpha(opacity=100);cursor: pointer;')
+                input(type="hidden", id="_id", name="_id",value= user._id)
+            form( method="post")#account-form.form-horizontal(role='form')
+                div(style='float:right;width:580px;')
+                    .input-group(style='margin-top: 10px;margin-bottom: 10px;')
+                        span.input-group-addon(style='width:200px;')
+                            div First Name
+                        input#first_name-tf(style='width:385px;').form-control(type='text', name='first_name', value= user.first_name, placeholder='First Name',disabled='disabled', maxlength=30)
+                    .input-group(style='margin-top: 10px;margin-bottom: 10px;')
+                        span.input-group-addon(style='width:200px;')
+                            div Last Name
+                        input#last_name-tf(style='width:385px;').form-control(type='text', name='last_name', value= user.last_name, placeholder='Last Name',disabled='disabled', maxlength=30)
+                    .input-group(style='margin-top: 10px;margin-bottom: 10px;')
+                        span.input-group-addon(style='width:200px;')
+                            div Cell #
+                        input#phone_number-tf(style='width:385px;').form-control.disabled(type='text', name='phone_number', value= user.phone_number,disabled='disabled', placeholder='Cell Number' maxlength=15)
+                    .input-group(style='margin-top: 10px;margin-bottom: 0px;')
+                        span.input-group-addon(style='width:200px;')
+                            div Email
+                        input#email-tf(style='width:385px;').form-control(type='text',  name='email', value= user.email, disabled='disabled', placeholder='Email' maxlength=50)
+                    input(type="hidden", id="hdn_image", name="hdn_image",value= user.user_image)
+                    .form-actions
+                    button(type='button')#account-form-edit.btn
+                    button(type='button')#account-form-cancel.btn.hide
+                    button(type='submit')#account-form-btn2.btn.hide
+// display form errors in a custom modal window //
+include modals/form-errors
+include modals/lost-password

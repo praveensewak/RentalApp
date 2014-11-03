@@ -1,0 +1,212 @@
+extends layout
+mixin driver_trip_tr_detailed(o)
+    tr(style="display:none")
+        td(colspan="7" style="padding-left: 0;")
+            div.details
+                div.sec.video-container
+                    img(src="https://www.google.com/maps/api/staticmap?center="+o.trip_start_latitude+","+o.trip_start_longitude+"&zoom=12&maptype=roadmap&sensor=fals&size=200x200&markers=size:tiny%7color:blue%7Clabel:C%7C"+o.trip_start_latitude+","+o.trip_start_longitude+"&markers=size:tiny%7color:green%7Clabel:G%7C"+o.trip_end_latitude+","+o.trip_end_longitude+"&path=weight:3%7Ccolor:red%7Cenc:"+o.overview_polyline+"&key=AIzaSyBvj2J7McZL_SkQDRC-Rc8RKvHM1Mvw0GA")
+                div.sec
+                    div.payment-details
+                        div.fare= o.payment
+                        div.payment-method
+                            img(src="../../images/visa-card-icon.png")
+                            span.card_number ••••5660
+                        div.payment-time= moment(o.trip_start_datetime).format('MMMM Do YYYY, h:mm:ss a')
+                        div.ss-container
+                            div
+                                div.trip-start
+                                    div.icon-circle.red
+                                    div
+                                        div.time=moment(o.trip_start_datetime).format('h:mm:ss a')
+                                        div.place= o.trip_start_address
+                                div.trip-stop
+                                    div.icon-circle.blue
+                                    div
+                                        div.time=moment(o.trip_end_datetime).format('h:mm:ss a')
+                                        div.place= o.trip_end_address
+                div.sec
+                    div.rating
+                        img(src="../../images/star-icon.png")
+                        img(src="../../images/star-icon.png")
+                        img(src="../../images/star-icon.png")
+                        img(src="../../images/star-icon.png")
+                        img(src="../../images/star-icon.png")
+                    form(method="GET",action="/api/trip/#{o.tripid}/polyline")
+                        input(type="hidden", name="isWeb", value="true")
+                        button(type="submit" ) view details
+
+mixin admin_trip_tr_detailed(o)
+    tr(style="display:none")
+        td(colspan="7" style="padding-left: 0;")
+            div.details
+                div.sec.video-container
+                    img(src="https://www.google.com/maps/api/staticmap?center="+o.trip_start_latitude+","+o.trip_start_longitude+"&zoom=12&maptype=roadmap&sensor=fals&size=200x200&markers=size:tiny%7color:blue%7Clabel:C%7C"+o.trip_start_latitude+","+o.trip_start_longitude+"&markers=size:tiny%7color:green%7Clabel:G%7C"+o.trip_end_latitude+","+o.trip_end_longitude+"&path=weight:3%7Ccolor:red%7Cenc:"+o.overview_polyline+"&key=AIzaSyBvj2J7McZL_SkQDRC-Rc8RKvHM1Mvw0GA")
+                div.sec
+                    div.payment-details
+                        div.fare= o.payment
+                        div.payment-method
+                            img(src="../../images/visa-card-icon.png")
+                            span.card_number ••••5660
+                        div.payment-time= moment(o.trip_start_datetime).format('MMMM Do YYYY, h:mm:ss a')
+                        div.ss-container
+                            div
+                                div.trip-start
+                                    div.icon-circle.red
+                                    div
+                                        div.time=moment(o.trip_start_datetime).format('h:mm:ss a')
+                                        div.place= o.trip_start_address
+                                div.trip-stop
+                                    div.icon-circle.blue
+                                    div
+                                        div.time=moment(o.trip_end_datetime).format('h:mm:ss a')
+                                        div.place= o.trip_end_address
+
+
+mixin admin_trip_tr(o)
+
+    tr.paginate
+        td= moment(o.passenger_request_datetime).format('MM-DD-YY h:mm:ss a')
+        td= moment(o.trip_driver_arrival_datetime).format('MM-DD-YY h:mm:ss a')
+        td= moment(o.trip_end_datetime).format('MM-DD-YY h:mm:ss a')
+        td= o.chauffeur_license_no
+        td= o.first_name
+        td= o.last_name
+        td= o.trip_status
+    +admin_trip_tr_detailed(o)
+
+mixin driver_trip_tr(o)
+
+    tr.paginate
+        td= moment(o.trip_start_datetime).format('MM-DD-YYYY')
+        td= o.passenger_request_city
+        td= o.first_name
+        td= (o.trip_actual_distance/1609.344).toFixed(4)
+        td= moment.utc(o.trip_actual_duration).format("HH:mm:ss")
+        td= '$'+ _.str.numberFormat(o.trip_grandtotal, 3)
+        td= o.trip_status
+    +driver_trip_tr_detailed(o)
+mixin passenger_trip_tr(o)
+
+    tr.paginate
+        td= moment(o.trip_start_datetime).format('MM-DD-YYYY')
+        td= o.passenger_request_city
+        td= o.first_name
+        td= (o.trip_actual_distance/1609.344).toFixed(4)
+        td= moment.utc(o.trip_actual_duration).format("HH:mm:ss")
+        td= '$'+ _.str.numberFormat(o.trip_grandtotal, 3)
+        td= o.trip_status
+    +driver_trip_tr_detailed(o)
+
+block content
+    include header
+    section.container
+        include nav_menu
+        // preset form values if we receive a userdata object //
+        - user = typeof(udata) != 'undefined' ? udata : { }
+        -if(user.user_type == 'passenger'){
+            section.content.home
+                table.trips
+                    caption
+                        div.clearfix
+                            span.left-caption My Trips
+                        div.clearfix
+                            include passenger_search_form
+                    thead
+                        tr
+                            th(data-sort="date") Date
+                            th(data-sort="string") City
+                            th(data-sort="string") Driver
+                            th(data-sort="int") Distance
+                            th(data-sort="int") Duration
+                            th(data-sort="int") Fare
+                            th(data-sort="string") Status
+                    tbody
+                        if data.length>0
+                            each trip in data
+                                +passenger_trip_tr(trip)
+                        else
+                            tr
+                                td(colspan="7" style="display=table-cell")
+                                    h1
+                                        center no record aviable
+                    tfoot
+                        tr(style="border-bottom: 0;")
+                            td(colspan=7, style="text-align:center")
+                                div#page-nav(style="display: inline-block;")
+        -}else if(user.user_type == 'driver'){
+            section.content.home
+                table.trips
+                    caption
+                        div.clearfix
+                            span.left-caption My Trips
+                        div.clearfix
+                            include driver_search_form
+                    thead
+                        tr
+                            th(data-sort="date") Date
+                            th(data-sort="string") City
+                            th(data-sort="string") Passenger
+                            th(data-sort="int") Distance
+                            th(data-sort="int") Duration
+                            th(data-sort="int") Payment
+                            th(data-sort="string") Status
+                    tbody
+                        if data.length>0
+                            each trip in data
+                                +driver_trip_tr(trip)
+                        else
+                            tr
+                                td(colspan="7" style="display=table-cell")
+                                    h1
+                                        center no record aviable
+                    tfoot
+                        tr(style="border-bottom: 0;")
+                            td(colspan=7, style="text-align:center")
+                                div#page-nav(style="display: inline-block;")
+        -}else if(user.user_type == 'admin'){
+            section.content.home
+                table.trips
+                    caption
+                        div.clearfix
+                            span.left-caption My Trips
+                        div.clearfix
+                            include admin_search_form
+                    thead
+                        tr
+                            th(data-sort="date") Pickup Request
+                            th(data-sort="string") Pickup
+                            th(data-sort="string") Drop off
+                            th(data-sort="int") Chauffeur #
+                            th(data-sort="int") first name
+                            th(data-sort="int") last name
+                            th(data-sort="string") Status
+                    tbody
+                        if data.length>0
+                            each trip in data
+                                +admin_trip_tr(trip)
+                        else
+                            tr
+                                td(colspan="7" style="display=table-cell")
+                                    h1
+                                        center no record aviable
+                    tfoot
+                        tr(style="border-bottom: 0;")
+                            td(colspan=7, style="text-align:center")
+                                div#page-nav(style="display: inline-block;")
+        -}
+    include modals/alert
+    include modals/confirm
+block scripts
+    script(src='/lib/jquery/jquery-1.10.2.min.js')
+    script(src='/lib/bootstrap/dist/js/bootstrap.min.js')
+    script(src='/vendor/jquery.form.js')
+    script(src='/lib/plugin/jExpand.js')
+    script(src='/lib/plugin/stupidtable.js')
+    script(src='/lib/plugin/jquery.simplePagination.js')
+    script(src='/js/controllers/paginationCtrl.js')
+    script(src='/lib/bootstrap/js/modal.js')
+    script(src='/lib/bootstrap/js/transition.js')
+    script(src='/js/form-validators/accountValidator.js')
+    script(src='https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&dummy=.js')
+    script(src='/js/views/home.js')
+    script(src='/js/controllers/homeController.js')

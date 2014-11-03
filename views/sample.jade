@@ -1,0 +1,82 @@
+doctype
+html
+    head
+        title taxi
+        link(rel='stylesheet', href='/lib/bootstrap/dist/css/bootstrap.css')
+        link(rel='stylesheet', href='/css/style.css')
+    body
+        nav.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
+            div.container
+                div.navbar-header
+                    button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+                        span.sr-only Toggle navigation
+                        span.icon-bar
+                        span.icon-bar
+                        span.icon-bar
+                    a.navbar-brand(href='#') taxi web portal
+                // Collect the nav links, forms, and other content for toggling
+                div#bs-example-navbar-collapse-1.collapse.navbar-collapse
+                    ul.nav.navbar-nav
+                        li
+                            a(href='/my_account') My Account
+                        li
+                            a(href='/user_payments') My Payments
+                        li
+                            a(href='#') Contact Us
+                button#btn-logout.btn.btn-primary(style='margin-top: 7px;')
+                    i.icon-lock.icon-white
+                    | Sign Out
+        div.container
+            header.jumbotron.taxi-spacer
+                h1 Welcome to taxi!
+                p
+                    | This is passenger area here you can view travelling history, manage your payment information and edit you account information.
+
+            hr
+            div.row
+                div.col-lg-12
+                    h3 Passenger Features
+                    div.row.text-center
+                        div.col-md-3.col-sm-6.taxi-feature
+                            div.thumbnail
+                                img(src='http://placehold.it/800x500', alt='')
+                                div.caption
+                                    h3 My Rides
+                                    p Here you can view your riding history.
+                                    p
+                                    a.btn.btn-primary(href='#') View
+                        div.col-md-3.col-sm-6.taxi-feature
+                            div.thumbnail
+                                img(src='http://placehold.it/800x500', alt='')
+                                div.caption
+                                    h3 My Payments
+                                    p Here you can view your payment information.
+                                    p
+                                    a.btn.btn-primary(href='#') View
+                        div.col-md-3.col-sm-6.taxi-feature
+                            div.thumbnail
+                                img(src='http://placehold.it/800x500', alt='')
+                                div.caption
+                                    h3 My Account
+                                    p Here you can change your account setting.
+                                    p
+                                    a.btn.btn-primary(href='#') View
+                        div.col-md-3.col-sm-6.taxi-feature
+                            div.thumbnail
+                                img(src='http://placehold.it/800x500', alt='')
+                                div.caption
+                                    h3 Plan Trip
+                                    p He you can manage and plan your future trips.
+                                    p
+                                    a.btn.btn-primary(href='#') View
+            hr
+            footer
+                div.row
+                    div.col-lg-12
+                        p Copyright &copy;  2014
+block scripts
+    script(src='/lib/jquery/jquery-1.10.2.min.js')
+    script(src='/lib/bootstrap/dist/js/bootstrap.min.js')
+    script(src='/vendor/jquery.form.js')
+    script(src='/lib/bootstrap/js/modal.js')
+    script(src='/lib/bootstrap/js/transition.js')

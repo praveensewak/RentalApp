@@ -1,0 +1,46 @@
+﻿extends layout2
+block content
+    - user = typeof(udata) != 'undefined' ? udata : { }
+    link(rel="stylesheet" href="css/login.css")
+    include signup-header
+    section(class="container")
+        h1
+            div(style="padding-top:15px;") Login
+        form(id="login-form" class="login" role="form" method="POST")
+            h2  Signin to your account now!
+            input(type="text" name="email" placeholder="Username...")
+            input(type="password" name="password" placeholder="Password...")
+            label(for="remeber_password")
+                input(type="checkbox" name="remeber_password" id="remeber_password")
+                span Remeber password
+            a#forgot-password(href="#" style="float:right;margin-right:15px;") Forgot your Password?
+            button(type="submit") sign in
+        aside
+            h3 if you are new in taxi join us now!
+            figure(class="signup-passenger")
+                img(src="images/passenger_signup.png")
+                figcaption
+                    a(href="/signup")
+                        span Register as PASSENGER
+            figure(class="signup-driver")
+                img(src="images/driver_signup.png")
+                figcaption
+                    a(href="/driver_signup")
+                        span Register as DRIVE
+    footer
+
+
+    include modals/alert
+    include modals/lost-password
+    include modals/confirm2
+
+block scripts
+    script(src='/lib/jquery/jquery-1.10.2.min.js')
+    script(src='/lib/bootstrap/dist/js/bootstrap.min.js')
+    script(src='/vendor/jquery.form.js')
+    script(src='/lib/bootstrap/js/modal.js')
+    script(src='/lib/bootstrap/js/transition.js')
+    script(src='/js/views/login.js')
+    script(src='/js/controllers/loginController.js')
+    script(src='/js/form-validators/loginValidator.js')
+    script(src='/js/form-validators/emailValidator.js')

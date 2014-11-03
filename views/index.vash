@@ -1,0 +1,19 @@
+﻿@html.extend('layout', function(model) {
+  @html.block("body", function (model) {
+
+    @if (model.error) {
+      <p class="text-error">Error occurred: @model.error</p>
+    }
+
+    @if(model.categories)
+    {
+        <div class="row">
+          <div class="list-group col-lg-6">
+            @model.categories.forEach(function (category) {
+              <a href="/notes/@category.name" class="list-group-item list-group-item-info"><span class="badge">@(category.notes ? category.notes.length : 0)</span>@category.name</a>
+            })
+          </div>
+        </div>
+      }
+  })
+})

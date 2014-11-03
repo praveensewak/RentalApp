@@ -1,0 +1,70 @@
+@html.extend('layout', function(model){
+
+  @html.block("body", function (model) {
+
+
+    <script>
+
+
+      $().ready(function() {
+
+      	var container = $('#div_notification');
+
+      	$("#reset").validate({
+      	        errorContainer: container,
+          		errorLabelContainer: $("ol", container),
+          		wrapper: 'li',
+            rules: {
+                password:{
+                required: true
+              },
+              confirm:{
+                              required: true
+                            }
+            },
+            messages: {
+              password: {
+                required: "Please enter new password"
+              },
+              confirm: {
+                              required: "Please confirm new password"
+                            }
+            }
+          });
+
+      	$(".cancel").click(function() {
+      		validator.resetForm();
+      	});
+      });
+
+        </script>
+
+
+    @if (model.message) {
+      <p>@model.message</p>
+    }
+
+                    <div class="container" id='div_notification'>
+                  	<h4>Please fix following errors in order to reset your password.</h4>
+                  	<ol>
+                  	</ol>
+                  </div>
+    <form  method="post" role="form" class="form-horizontal" name="reset" id="reset">
+      <div class="form-group">
+        <label class="control-label col-lg-1">New Password</label>
+        <div class="col-lg-5">
+          <input type="password" name="password" class="form-control" placeholder="password" maxlength="60"/>
+        </div>
+      </div>
+      <div class="form-group">
+              <label class="control-label col-lg-1">Confirm Password</label>
+              <div class="col-lg-5">
+                <input type="password" name="confirm" class="form-control" placeholder="confirm" maxlength="60"/>
+              </div>
+            </div>
+      <div class="form-group">
+        <div class="col-lg-offset-1 col-lg-5"><input type="submit" value="Update password" class="btn btn-primary" /></div>
+      </div>
+    </form>
+  })
+})

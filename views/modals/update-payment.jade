@@ -1,0 +1,60 @@
+//
+   Created by Asif on 7/26/2014.
+// preset form values if we receive a userdata object //
+- userpayment = typeof(udata) != 'undefined' ? udata : { }
+
+// store the userId on the client side in a hidden input field //
+input(type='hidden', value= userpayment._id)#userpaymentId
+#update-payment.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+    .modal-dialog
+        .modal-content
+            .modal-header
+                button.close(type='button', data-dismiss='modal')
+                    span(aria-hidden='true') ×
+                    span.sr-only Close
+                h4#myModalLabel.modal-title Update Payment Information
+            div.modal-body
+                form(method="post")#update-payment-form.span4(style="width:580px;")
+                    p Please enter credit card details
+                    div.alert.alert-error.hide(style='margin-top: 10px;')
+                    input(type='hidden',name='_id' value= userpayment._id)#_id
+                    .input-group(style='margin-top: 10px;margin-bottom: 10px;')
+                        span.input-group-addon(style='width:150px;') First Name
+                        input#card_hoder_name-tf(style='width:420px;').form-control(type='text', name='cardholder_first_name', value = userpayment.card_hoder_name, placeholder='First Name')
+                    .input-group(style='margin-top: 10px;margin-bottom: 10px;')
+                        span.input-group-addon(style='width:150px;') Last Name
+                        input#card_hoder_last_name-tf(style='width:420px;').form-control(type='text', name='cardholder_last_name', value = userpayment.card_hoder_last_name, placeholder='Last Name')
+                    .input-group(style='margin-top: 10px;margin-bottom: 10px;')
+                        span.input-group-addon(style='width:150px;') Card Number
+                        input#card_number-tf(style='width:420px;').card_number-tf.form-control(type='text', name='card_number', value= userpayment.card_number, placeholder='Card Number', maxlength='19')
+                    .input-group(style='margin-top: 10px;margin-bottom: 10px;')
+                        span.input-group-addon(style='width:150px;') Expiry Data
+                        input#expiry_date-tf(style='width:420px;').form-control.disabled(type='text', name='expiry_date', value= userpayment.expiry_date, placeholder='mm/yyyy')
+                    .input-group(style='margin-top: 10px;margin-bottom: 10px;')
+                        span.input-group-addon(style='width:150px;') CVV Number
+                        input#cvv_number-tf(style='width:420px;').form-control(type='text', name='cvv_number', value= userpayment.cvv_number, placeholder='CVV Number')
+                    .input-group(style='margin-top: 10px;margin-bottom: 10px;')
+                        span.input-group-addon(style='width:150px;') Zip Code
+                        input#zip_code-tf(style='width:420px;').form-control(type='text', name='zip_code', value=userpayment.zip_code, placeholder='Zip Code')
+                    .input-group(style='margin-top: 10px;margin-bottom: 10px;')
+                        span.input-group-addon(style='width:150px;') Use Type
+                        select#card_use_type-tf.form-control(name='card_use_type', placeholder='Taxi Company')
+                                option(value='') Select
+                                if 'personal' == userpayment.card_use_type
+                                    option(value='personal' , selected='true') Personel
+                                else
+                                    option(value='personal') Personal
+                                if 'business' == userpayment.card_use_type
+                                    option(value='business', selected='true') Business
+                                else
+                                    option(value='business') Business
+                    .input-group(style='margin-top: 10px;margin-bottom: 10px;')
+                        span.input-group-addon(style='width:150px;') Set as default &nbsp;&nbsp;
+                        input#isdefault-tf.form-control(type='checkbox', name='isdefault', value=userpayment.is_default, placeholder='Default')(style='width: 35px;height: 35px;float: left;')
+                    input(type='hidden', value= user._id, name='user_id')#user_id
+                    input(type='hidden', value= user.type, name='type')#type
+                    span#submit.btn.btn-primary.hide Update
+                    span#addnew.btn.btn-primary.hide Submit
+                    button(data-dismiss="modal")#cancel.btn Close
+                    button(data-dismiss="alert").close
+            div.modal-footer

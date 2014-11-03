@@ -1,0 +1,55 @@
+extends layout
+block content
+    include header
+    .section.container
+        include nav_menu
+        section.content(style='padding:5px;')
+            h1 Payments options
+            hr
+            #update-payment-MSG
+                div.alert.alert-error.hide(style='padding: 10px;')
+                a#link_add_new(href='#').btn.btn-primary(style='float: right;margin-bottom:10px;') Add New
+                    i.glyphicon.glyphicon-plus-sign.glyphicon-large.glyphicon-white(style='margin-left: 10px;')
+                - payment_setting = typeof(pdata) != 'undefined' ? pdata : { }
+                input(type='hidden', value= payment_setting.user_id, name='userid')#userid
+                if (payment_setting.is_cash_default)
+                    a#remove_cash_default(href='#').btn.btn-primary(style='float: left;margin-bottom:10px;background-color: #418A33;border-color: #1F750A;') Remove Cash as Default
+                        i.glyphicon.glyphicon-plus-sign.glyphicon-large.glyphicon-white(style='margin-left: 10px;')
+                    a#set_cash_default(href=payment_setting.is_cash_default).hide.btn.btn-primary(style='float: left;margin-bottom:10px;') Set Cash as Default
+                        i.glyphicon.glyphicon-plus-sign.glyphicon-large.glyphicon-white(style='margin-left: 10px;')
+                else
+                    #remove_cash_default(href='#').hide.btn.btn-primary(style='float: left;margin-bottom:10px;background-color: #418A33;border-color: #1F750A;') Remove Cash as Default
+                        i.glyphicon.glyphicon-plus-sign.glyphicon-large.glyphicon-white(style='margin-left: 10px;')
+                    a#set_cash_default(href=payment_setting.is_cash_default).btn.btn-primary(style='float: left;margin-bottom:10px;') Set Cash as Default
+                        i.glyphicon.glyphicon-plus-sign.glyphicon-large.glyphicon-white(style='margin-left: 10px;')
+            table#user_payments_container.trips
+                thead
+                    tr
+                        th #
+                        th First Name
+                        th Last Name
+                        th Card Number
+                        th Action
+                tbody
+        hr
+        footer
+            div.row
+                div.col-lg-12
+                    p Copyright &copy;  2014
+    include modals/update-payment
+    include modals/alert
+    include modals/confirm3
+    include modals/form-errors
+block scripts
+    script(src='/lib/jquery/jquery-1.10.2.min.js')
+    script(src='/lib/bootstrap/dist/js/bootstrap.min.js')
+    script(src='/vendor/jquery.form.js')
+    script(src='/lib/jquery/jquery.mask.js')
+    script(src='/lib/jquery/jquery.numeric.js')
+    script(src='/js/views/user_payments.js')
+    script(src='/js/controllers/userPaymentsController.js')
+    script(src='/js/form-validators/userPaymentValidator.js')
+    script(src='/lib/bootstrap/js/modal.js')
+    script(src='/lib/bootstrap/js/transition.js')
+    script(src='/js/controllers/homeController.js')
+    script(src='/lib/plugin/jquery.creditCardValidator.js')

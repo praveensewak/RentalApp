@@ -1,0 +1,170 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+
+    min-height: 100%;
+}
+.container, body > header > div  {
+    margin: 0 auto;
+    width: 100%;
+}
+body > header {
+    width: 100%;
+    height: 150px;
+    background-color: #102c42;
+    position: absolute;
+    top:  0;
+    left: 0;
+}
+body > header > div > div {
+    color: grey;
+    height: 100%;
+}
+div.left-header {
+    float: left;
+    margin-left:150px;
+}
+div.left-header > figure {
+    display: table;
+    margin-top: 35px;
+}
+div.left-header > figure > img {
+    display: table-cell;
+}
+
+div.left-header > figure > figcaption {
+    display: table-cell;
+    font-size: 50px;
+    text-transform : none;
+    vertical-align: middle;
+    padding-left: 20px;
+    color: #FFF;
+}
+div.right-header {
+    float: right;
+    margin-right: 150px;
+}
+.container{
+    margin-top: 80px;
+    margin-bottom: 80px;
+    background-color: white;
+    padding: 0;
+}
+.left-caption {
+    float: left;
+    font-size: 26px;
+    text-transform: uppercase;
+    padding-left: 25px;
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 15px;
+}
+
+/*passenger signup page*/
+.container{
+    background-color: transparent;
+
+}
+.container > h1 {
+    position: absolute;
+    top: 110px;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background-color: rgb(224,11,40);
+    color: #FFF;
+    border-top: 0px solid grey;
+    text-align: center;
+    text-transform: uppercase;
+    vertical-align: middle;
+}
+span.message {
+    display: table-cell;
+    vertical-align: middle;
+    padding-right: 10px;
+}
+form.signup, aside {
+    width: 500px;
+    margin: 0 auto;
+    text-align: center;
+}
+form.signup > h2{
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 1.4em;
+    padding-top: 50px;
+    padding-bottom:20px;
+}
+form.signup fieldset {
+    width: 490px;
+    height: 40px;
+    border-radius: 10px;
+    border: 0;
+    margin-bottom: 20px;
+    background-color: white;
+}
+fieldset > span {
+    display: inline-table;
+    width: 30px;
+    height: 40px;
+    vertical-align: top;
+}
+fieldset > span > span {
+    font-family: 'Glyphicons Halflings';
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+.red{
+    color: red;
+}
+form.signup fieldset input {
+    width: 420px;
+    border-radius: 0;
+    margin-bottom: 20px;
+    height: 40px;
+    border: 0;
+}
+form.signup fieldset select {
+    width: 420px;
+    border-radius: 0;
+    margin-bottom: 20px;
+    height: 40px;
+    border: 0;
+}
+form.signup button {
+    width: 490px;
+    margin: 0 auto;
+    height: 40px;
+    border-radius: 10px;
+    border: 0;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+form.signup button {
+    width: 240px;
+    padding: 15px 5px;
+    height: 70px;
+    font-size: 1.9em;
+    margin-top: 10px;
+    background-color: rgb(36, 187, 216);
+    text-transform: uppercase;
+}
+form.signup button[type="reset"] {
+    background-color: black;
+    color: white;
+}
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background-color: #102c42;
+}

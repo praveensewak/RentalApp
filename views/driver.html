@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+
+    <title></title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="css/site.css"/>
+    <link rel="stylesheet" type="text/css" href="http://angular-ui.github.com/ng-grid/css/ng-grid.css" />
+
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/fonts/FontAwesome.otf" rel="stylesheet">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/fonts/fontawesome-webfont.eot" rel="stylesheet">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/fonts/fontawesome-webfont.svg" rel="stylesheet">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/fonts/fontawesome-webfont.ttf" rel="stylesheet">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/fonts/fontawesome-webfont.woff" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="css/ui.jqgrid.css" />
+    <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+    <header>
+        <div>
+            <div class="left-header">
+                <figure class="company">
+                    <img class="company-logo" src="../images/company-logo.png" />
+                    <figcaption class="company-name">taxi</figcaption>
+                </figure>
+            </div>
+            <div class="right-header">
+                <figure class="user">
+                    <img class="user-logo" src="../images/user-logo.png" />
+                    <figcaption class="user-name">Ahmed</figcaption>
+                </figure>
+            </div>
+        </div>
+    </header>
+    <section class="container">
+    <nav>
+        <header>
+            <figure class="user">
+                <img class="user-logo" src="../images/user-logo-large.png" />
+                <figcaption class="user-name">Ahmed</figcaption>
+            </figure>
+        </header>
+        <ul>
+            <li>
+                <img src="../images/my-trip-icon.png" />
+                <span class="text"><a href="#">My Trips</a></span>
+            </li>
+            <li>
+                <img src="../images/profile-icon.png" />
+                <span class="text"><a href="#">Profile</a></span>
+            </li>
+            <li>
+                <img src="../images/payment-icon.png" />
+                <span class="text"><a href="#">Bank Details</a></span>
+            </li>
+            <li>
+                <img src="../images/payment-icon.png" />
+                <span class="text"><a href="#">Documents</a></span>
+            </li>
+            <li>
+                <img src="../images/payment-icon.png" />
+                <span class="text"><a href="#">Cab</a></span>
+            </li>
+            <li>
+                <img src="../images/payment-icon.png" />
+                <span class="text"><a href="#">Trip Invoices</a></span>
+            </li>
+            <li>
+                <img src="../images/payment-icon.png" />
+                <span class="text"><a href="#">Drivers</a></span>
+            </li>
+            <li>
+                <img src="../images/payment-icon.png" />
+                <span class="text"><a href="#">Live Status</a></span>
+            </li>
+            <li>
+                <img src="../images/payment-icon.png" />
+                <span class="text"><a href="#">Support & FAQ</a></span>
+            </li>
+            <li>
+                <i class="fa fa-building"></i>
+                <span class="text" ><a href="#" >Log Out</a></span>
+            </li>
+        </ul>
+    </nav>
+        <section class="content" ng-app="app">
+          <div id="trip" >
+            <div style="margin:50px">
+            <form class="form-inline " role="form">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span></div>
+                        <input placeholder="Start Date" class="form-control" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="date">
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span></div>
+                        <input placeholder="End Date" class="form-control" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="date">
+
+                    </div>
+                </div>
+
+                <select class="form-control" style="width:150px">
+                    <option>pending</option>
+                    <option>fulfilled</option>
+                    <option>cancelled</option>
+                    <option>not-fulfilled</option>
+                </select>
+
+                <button type="submit" class="btn btn-default">Filter </button>
+            </form>
+            </div>
+
+            <div ng-controller="DemoCtrl">
+                <!--<p><strong>Page:</strong> {{tableParams.page()}}</p>
+                <p><strong>Count per page:</strong> {{tableParams.count()}}</p>-->
+
+                <table ng-table="tableParams" class="table">
+                    <tr ng-repeat="user in $data">
+                        <td data-title="'Date'">{{user.date}}</td>
+                        <td data-title="'Start Address'">{{user.startAddress}}</td>
+                        <td data-title="'End Address'">{{user.endAddress}}</td>
+                        <td data-title="'Total Miles'">{{user.totalMiles}}</td>
+                        <td data-title="'Total Minutes'">{{user.totalMinutes}}</td>
+                        <td data-title="'Driver Payment'">{{user.payment}}</td>
+                        <td data-title="'Status'">{{user.status}}</td>
+                    </tr>
+                </table>
+            </div>
+          </div>
+            <div class="bottom">
+
+
+            </div>
+
+        </section>
+</section>
+    <script src='/lib/jquery/jquery.min.js'></script>
+    <script src='/lib/underscore/underscore.js'></script>
+    <script src="/lib/angular/angular.min.js"></script>
+    <script src="/lib/angular/angular-animate.js"></script>
+    <script  src="http://angular-ui.github.com/ng-grid/lib/ng-grid.debug.js"></script>
+    <script  src="http://bazalt-cms.com/assets/ng-table/0.3.0/ng-table.js"></script>
+    <script src="/vendor/toaster.js"></script>
+    <script src="/js/controllers/passengerCtrl.js"></script>
+    <script src="/lib/plugin/grid.locale-en.js" type="text/javascript"></script>
+    <script src="/lib/plugin/jquery.jqGrid.min.js" type="text/javascript"></script>
+
+<script type='text/html' id='person-template'>
+  <div class='text-center'>
+    <h1> <%= Name %> </h1>
+
+  </div>
+</script>
+
+    <script type='text/html' id='trip-template'>
+        <div class="container" ng-app="app" ng-controller="passengerController">
+
+            <div class="row" >
+                <toaster-container toaster-options="{'time-out': 1400}"></toaster-container>
+
+                <div class="gridStyle" ng-grid="gridOptions"></div>
+
+            </div>
+        </div>
+    </script>
+
+
+
+    <script>
+
+
+        $('a').click(function(e){
+           var name=e.target.innerText
+           if(name!='My Trips') {
+           var temp= _.template($('#person-template').html(),{Name:e.target.innerText});
+               $('#trip').removeClass('show').addClass('hidden');
+               $('.bottom').html(temp)
+            }
+            else{
+               $('#trip').removeClass('hidden').addClass('show');
+               $('.bottom').html('');
+
+           }
+
+        })
+
+    </script>
+
+
+
+</body>
+</html>

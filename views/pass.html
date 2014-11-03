@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+
+    <title>taxi</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="css/site.css"/>
+    <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+   <!-- <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        .container, body > header > div  {
+            margin: 0 auto;
+            width: 1120px;
+        }
+        body > header {
+            width: 100%;
+            height: 150px;
+            background-color: #102c42;
+            position: absolute;
+            top:  0;
+            left: 0;
+        }
+
+        body > header > div > div {
+            color: grey;
+            height: 100%;
+        }
+
+        div.left-header {
+            float: left;
+        }
+        div.left-header > figure {
+            display: table;
+            margin-top: 35px;
+        }
+        div.left-header > figure > img {
+            display: table-cell;
+        }
+        div.left-header > figure > figcaption {
+            display: table-cell;
+            font-size: 50px;
+            text-transform: uppercase;
+            vertical-align: middle;
+            padding-left: 20px;
+        }
+        div.right-header {
+            float: right;
+        }
+        div.right-header > figure {
+            display: table;
+            margin-top: 55px;
+        }
+        div.right-header > figure > img {
+            display: table-cell;
+        }
+        div.right-header > figure > figcaption {
+            display: table-cell;
+            font-size: 22px;
+            text-transform: lowercase;
+            vertical-align: middle;
+            padding-left: 20px;
+        }
+        .container{
+            margin-top: 80px;
+            background-color: white;
+            padding: 0;
+        }
+        nav {
+            background-color: white;
+            width: 250px;
+            height: 100%;
+            display: inline-block;
+            vertical-align: top;
+            border-right: #cbcbcb 1px solid;
+            min-height: 700px;
+        }
+        nav .user {
+            padding: 30px 61px;
+        }
+        nav .user .user-logo {
+
+        }
+        nav .user .user-name {
+            text-align: center;
+            font-size: 25px;
+            color: rgb(34, 188, 216 );
+        }
+        nav > ul > li {
+            list-style: none;
+            width: 100%;
+            height: 50px;
+            border-top: #cbcbcb 1px solid;
+            padding: 15px 0px 0px 10px;
+        }
+        nav > ul > li:last-child {
+            border-bottom: #cbcbcb 1px solid;
+        }
+        section.content {
+            width: 870px;
+            display: inline-block;
+            vertical-align: top;
+            margin-left: -4px;
+        }
+        div.trips {
+            width: 100%;
+
+        }
+        div.trips header {
+            height: 53px;
+            padding-top: 13px;
+        }
+        .left-caption {
+            float: left;
+            font-size: 26px;
+            text-transform: uppercase;
+            padding-left: 25px;
+            display: inline-block;
+            vertical-align: top;
+            padding-top: 15px;
+        }
+        .right-caption {
+            float: right;
+            display: inline-block;
+            vertical-align: top;
+            padding-top: 30px;
+            padding-right: 35px;
+        }
+        table.trips {
+            width: 100%;
+        }
+        table.trips caption {
+            height: 70px;
+        }
+        table.trips tr {
+            height: 50px;
+            border-collapse: collapse;
+            border:  #cbcbcb 1px solid;
+            border-left: 0;
+            border-right: 0;
+        }
+        table.trips > thead > tr {
+            background-color: #e0dfe4;
+        }
+        td, th {
+            padding-left: 20px;
+            min-width: 105px;
+        }
+
+        .details {
+            width: 100%;
+            background-color: rgb(229,229,229);
+            padding: 30px 25px;
+        }
+        .sec {
+            display: inline-block;
+            vertical-align: top;
+            width: 33%;
+        }
+        .fare {
+            font-weight: 600;
+            font-size: 30px;
+        }
+        .payment-method {
+            font-size: 20px;
+        }
+        .payment-time {
+            font-size: 13px;
+        }
+        .place {
+            font-size: smaller;
+        }
+        .sec button {
+            width: 100%;
+            height: 45px;
+            margin-top: 10px;
+            border-radius: 5px;
+            background-color: rgb(36, 187, 216);
+            border: 0;
+            font-size: 15px;
+            font-weight: 900;
+            text-transform: uppercase;;
+        }
+        .icon-circle {
+            border: 4px solid;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+        .icon-circle.red {
+            border-color: red;
+        }
+        .icon-circle.blue {
+            border-color: #0000ff;
+        }
+        .trip-start > div, .trip-stop > div {
+            display: inline-block;
+        }
+        .rating {
+            margin-top: 42px;
+            margin-bottom: 10px;
+        }
+        .ss-container {
+            background-color: rgb(224,223,228);
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 8px;
+        }
+    </style>-->
+</head>
+<body>
+    <header>
+        <div>
+            <div class="left-header">
+                <figure class="company">
+                    <img class="company-logo" src="../images/company-logo.png" />
+                    <figcaption class="company-name">taxi</figcaption>
+                </figure>
+            </div>
+            <div class="right-header">
+                <figure class="user">
+                    <img class="user-logo" src="../images/user-logo.png" />
+                    <figcaption class="user-name">Ahmed</figcaption>
+                </figure>
+            </div>
+        </div>
+    </header>
+    <section class="container">
+    <nav>
+        <header>
+            <figure class="user">
+                <img class="user-logo" src="../images/user-logo-large.png" />
+                <figcaption class="user-name">Ahmed</figcaption>
+            </figure>
+        </header>
+        <ul>
+            <li>
+                <img src="../images/my-trip-icon.png" />
+                <span class="text"><a href="#">My Trips</a></span>
+            </li>
+            <li>
+                <img src="../images/profile-icon.png" />
+                <span class="text"><a href="/my_account">Profile</a></span>
+            </li>
+            <li>
+                <img src="../images/payment-icon.png" />
+                <span class="text"><a href="/user_payments">Payment</a></span>
+            </li>
+            <li>
+                <img src="../images/logout-icon.png" />
+                <span class="text" ><a  href="#" >Log Out</a></span>
+            </li>
+        </ul>
+    </nav>
+        <section class="content">
+            <table class="trips">
+                <caption>
+                    <span class="left-caption">
+                    My Trips
+                    </span>
+                    <span class="right-caption">
+                        <img src="../images/filter-icon.png" />
+                        <span class="">Filter trip</span>
+                    </span>
+                </caption>
+                <thead>
+                <tr>
+                    <th>
+                        Pickup
+                    </th>
+                    <th>
+                        Driver
+                    </th>
+                    <th>
+                        Fare
+                    </th>
+                    <th>
+                        Car
+                    </th>
+                    <th>
+                        City
+                    </th>
+                    <th>
+                        Payment Method
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        07/05/2014
+                    </td>
+                    <td>
+                        Steven
+                    </td>
+                    <td>
+                        $24.00
+                    </td>
+                    <td>
+                        Livery
+                    </td>
+                    <td>
+                        Piedmond Triad
+                    </td>
+                    <td>
+                        <img src="../images/ae-card-icon.png" />
+                        <span class="card-number">••••5560</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        06/15/2014
+                    </td>
+                    <td>
+                        John
+                    </td>
+                    <td>
+                        $34.00
+                    </td>
+                    <td>
+                        Cab
+                    </td>
+                    <td>
+                        Piedmond Triad
+                    </td>
+                    <td>
+                        <img src="../images/mc-card-icon.png" />
+                        <span class="card-number">••••5123</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        06/02/2014
+                    </td>
+                    <td>
+                        Alen
+                    </td>
+                    <td>
+                        $50.00
+                    </td>
+                    <td>
+                        Livery
+                    </td>
+                    <td>
+                        Piedmond Triad
+                    </td>
+                    <td>
+                        <img src="../images/visa-card-icon.png" />
+                        <span class="card-number">••••5660</span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="details">
+                <div class="sec">
+                    <div class="map">
+                        <img src="../images/trip-map.png">
+                    </div>
+                </div>
+                <div class="sec">
+                    <div class="payment-details">
+                        <div class="fare">$50.00</div>
+                        <div class="payment-method">
+                            <img src="../images/visa-card-icon.png" />
+                            <span class="card-number">••••5660</span>
+                        </div>
+                        <div class="payment-time">Sunday, june 15, 2014, 5:54A.M</div>
+                    </div>
+                    <div class="ss-container">
+                        <div>
+                            <div class="trip-start">
+                                <div class="icon-circle red"></div>
+                                <div>
+                                    <div class="time">5.54 A.M</div>
+                                    <div class="place">3982 Park Spring Drive, High Point, NC</div>
+                                </div>
+                            </div>
+                            <div class="trip-stop">
+                                <div class="icon-circle blue"></div>
+                                <div>
+                                    <div class="time">6.32 A.M</div>
+                                    <div class="place">3982 Park Spring Drive, High Point, NC</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sec">
+                    <div class="rating">
+                        <img src="../images/star-icon.png">
+                        <img src="../images/star-icon.png">
+                        <img src="../images/star-icon.png">
+                        <img src="../images/star-icon.png">
+                        <img src="../images/star-icon.png">
+                    </div>
+                    <form action="/resend" method="GET">
+                        <button type="submit">resend</button>
+                    </form>
+                    <form action="view_details" method="GET">
+                        <button type="submit">view details</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+</section>
+</body>
+</html>

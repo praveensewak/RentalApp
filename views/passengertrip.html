@@ -1,0 +1,90 @@
+<link rel="stylesheet" href="\lib\bootstrap\dist\css\bootstrap.min.css"/>
+<link rel="stylesheet" href="\lib\bootstrap\dist\css\bootstrap-theme.min.css"/>
+<link rel="stylesheet" href="\css\toaster.css"/>
+<link rel="stylesheet" type="text/css" href="http://angular-ui.github.com/ng-grid/css/ng-grid.css" />
+
+
+
+
+<style>
+    body {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #eee;
+    }
+
+    .form-signin {
+        max-width: 550px;
+        padding: 15px;
+        margin: 0 auto;
+    }
+    .form-signin .form-signin-heading,
+    .form-signin .checkbox {
+        margin-bottom: 10px;
+    }
+    .form-signin .checkbox {
+        font-weight: normal;
+    }
+    .form-signin .form-control {
+        position: relative;
+        height: auto;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 10px;
+        font-size: 12px;
+    }
+    .form-signin .form-control:focus {
+        z-index: 2;
+    }
+    .form-signin input[type="email"] {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+    .form-signin input[type="password"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+    .form-signin input[type="button"], a {
+        margin-top: 10px;
+
+
+    }
+
+</style>
+
+<!--<div class="container">
+
+    <form class="form-signin" role="form" _lpchecked="1">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <input type="email" class="form-control " placeholder="Email address" required="" autofocus="" autocomplete="off" >
+        <input type="password" class="form-control" placeholder="Password" required="" autocomplete="off" >
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+
+</div>-->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/angular/angular.min.js"></script>
+<script src="/lib/angular/angular-animate.js"></script>
+<script type="text/javascript" src="http://angular-ui.github.com/ng-grid/lib/ng-grid.debug.js"></script>
+<script src="/vendor/toaster.js"></script>
+<script src="/js/controllers/passengerCtrl.js"></script>
+
+
+<div class="container" ng-app="app" ng-controller="passengerController">
+
+<div class="row" >
+    <toaster-container toaster-options="{'time-out': 1400}"></toaster-container>
+
+    <div class="gridStyle" ng-grid="gridOptions"></div>
+
+</div>
+</div>
+

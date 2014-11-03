@@ -1,0 +1,176 @@
+//
+   Created by Asif on 9/9/2014.
+- affiliates = typeof(affiliates) != 'undefined' ? affiliates : { }
+extends layout
+block content
+    link(rel="stylesheet" href="css/passenger_signup.css")
+    include registration_header
+    section(class="container")
+        h1 Request app download link
+        #update-payment-MSG(style='margin-top: 25px;')
+            div.alert.hide(style='padding: 10px;')
+        form(class="signup" id="account-form" role="form" method="POST")
+            h2 Please tell us a little about yourself
+            fieldset
+                span
+                    span(class="glyphicon-user")
+                input(type="text" name="first_name" placeholder="First Name" id="first_name-tf" maxlength='30')
+                span
+                    span(class="glyphicon-asterisk red")
+            fieldset
+                span
+                    span(class="glyphicon-user")
+                input(type="text" name="last_name" placeholder="Last Name" id="last_name-tf" maxlength='30' )
+                span
+            fieldset
+                span
+                    span(class="glyphicon-envelope")
+                input(type="email" name="email_address" placeholder="email" id="email_address-tf" maxlength='50')
+                span
+                    span(class="glyphicon-asterisk red")
+            fieldset
+                span
+                    span(class="glyphicon-envelope")
+                select( name="state" id="state-tf" placeholder="State")
+                    option(value='')
+                        |Select State
+                    option(value='AL')
+                        |Alabama
+                    option(value='AK')
+                        |Alaska
+                    option(value='AZ')
+                        |Arizona
+                    option(value='AR')
+                        |Arkansas
+                    option(value='CA')
+                        |California
+                    option(value='CO')
+                        |Colorado
+                    option(value='CT')
+                        |Connecticut
+                    option(value='DE')
+                        |Delaware
+                    option(value='DC')
+                        |District Of Columbia
+                    option(value='FL')
+                        |Florida
+                    option(value='GA')
+                        |Georgia
+                    option(value='HI')
+                        |Hawaii
+                    option(value='ID')
+                        |Idaho
+                    option(value='IL')
+                        |Illinois
+                    option(value='IN')
+                        |Indiana
+                    option(value='IA')
+                        |Iowa
+                    option(value='KS')
+                        |Kansas
+                    option(value='KY')
+                        |Kentucky
+                    option(value='LA')
+                        |Louisiana
+                    option(value='ME')
+                        |Maine
+                    option(value='MD')
+                        |Maryland
+                    option(value='MA')
+                        |Massachusetts
+                    option(value='MI')
+                        |Michigan
+                    option(value='MN')
+                        |Minnesota
+                    option(value='MS')
+                        |Mississippi
+                    option(value='MO')
+                        |Missouri
+                    option(value='MT')
+                        |Montana
+                    option(value='NE')
+                        |Nebraska
+                    option(value='NV')
+                        |Nevada
+                    option(value='NH')
+                        |New Hampshire
+                    option(value='NJ')
+                        |New Jersey
+                    option(value='NM')
+                        |New Mexico
+                    option(value='NY')
+                        |New York
+                    option(value='NC')
+                        |North Carolina
+                    option(value='ND')
+                        |North Dakota
+                    option(value='OH')
+                        |Ohio
+                    option(value='OK')
+                        |Oklahoma
+                    option(value='OR')
+                        |Oregon
+                    option(value='PA')
+                        |Pennsylvania
+                    option(value='RI')
+                        |Rhode Island
+                    option(value='SC')
+                        |South Carolina
+                    option(value='SD')
+                        |South Dakota
+                    option(value='TN')
+                        |Tennessee
+                    option(value='TX')
+                        |Texas
+                    option(value='UT')
+                        |Utah
+                    option(value='VT')
+                        |Vermont
+                    option(value='VA')
+                        |Virginia
+                    option(value='WA')
+                        |Washington
+                    option(value='WV')
+                        |West Virginia
+                    option(value='WI')
+                        |Wisconsin
+                    option(value='WY')
+                        |Wyoming
+                span
+                    span(class="glyphicon-asterisk red")
+            fieldset
+                span
+                    span(class="glyphicon-envelope")
+                input(type="text" name="city" placeholder="city" id="city-tf" maxlength='50')
+                span
+            fieldset
+                span
+                    span(class="glyphicon-envelope")
+                select(name='affiliate' value= '' placeholder='Affiliate' id='affiliate-tf',)
+                    option(value='') Select Affiliate
+                        each item, i in affiliates
+                            option(value='#{item._id}') #{item.name}
+            fieldset
+                span
+                input(type="text" name="comments" placeholder="Enter Link Request" id="comments-tf" maxlength='100')
+                span
+            input(type="hidden", id="fra", name="fra",value= 'false')
+            input(type="hidden", id="_id", name="_id",value= user._id)
+            input(type="hidden", id="registration_token", name="registration_token",value= user.registration_token)
+            button(type="submit" id="account-form-btn2") submit
+            button(type="reset" id="account-form-btn1") cancel
+            include modals/alert
+            include modals/form-errors
+    footer
+block content
+block scripts
+    script(src='/lib/jquery/jquery-1.10.2.min.js')
+    script(src='/lib/bootstrap/dist/js/bootstrap.min.js')
+    script(src='/vendor/jquery.form.js')
+    script(src='/lib/jquery/jquery.mask.js')
+    script(src='/vendor/bootstrap-modal.js')
+    script(src='/vendor/bootstrap-transition.js')
+    script(src='/js/views/appDownloadLink.js')
+    script(src='/js/controllers/appDownloadLinkController.js')
+    script(src='/js/form-validators/emailValidator.js')
+    script(src='/js/form-validators/appDownloadLinkValidator.js')

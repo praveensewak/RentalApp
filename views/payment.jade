@@ -1,0 +1,58 @@
+//
+   Created by Asif on 7/2/2014.
+extends layout
+block content
+    // preset form values if we receive a userdata object //
+    - userpayment = typeof(udata) != 'undefined' ? udata : { }
+    // store the userId on the client side in a hidden input field //
+    input(type='hidden', value= userpayment._id)#userpaymentId
+    .container
+    #account-form-container2.mainbox.col-md-4.col-md-offset-4.col-sm-8.col-sm-offset-2(style='margin-top: 50px;')
+        .panel.panel-info
+            .panel-heading
+                .panel-title Please tell us how will you pay for your rides.
+            .panel-body(style='padding-top: 10px;')
+                form( method="post")#payment-form.form-horizontal(role='form')
+                    .input-group(style='margin-top: 10px;margin-bottom: 10px;')
+                        span.input-group-addon First Name
+                        input#card_hoder_name-tf.form-control(type='text', name='cardholder_first_name', value= userpayment.card_hoder_name, placeholder='First Name', maxlength='50')
+                    .input-group(style='margin-top: 10px;margin-bottom: 10px;')
+                        span.input-group-addon Last Name
+                        input#card_hoder_last_name-tf.form-control(type='text', name='cardholder_last_name', value= userpayment.card_hoder_last_name, placeholder='Last Name', maxlength='50')
+                    .input-group(style='margin-top: 10px;margin-bottom: 10px;')
+                        span.input-group-addon Card Number
+                        input#card_number-tf.form-control(type='text', name='card_number', value= userpayment.card_number, placeholder='Card Number' , maxlength='19')
+                    .input-group(style='margin-top: 10px;margin-bottom: 10px;')
+                        span.input-group-addon Expiry Data
+                        input#expiry_date-tf.form-control.disabled(type='text', name='expiry_date', value= userpayment.expiry_date, placeholder='mm/yyyy')
+                    .input-group(style='margin-top: 10px;margin-bottom: 10px;')
+                        span.input-group-addon CVV Number
+                        input#cvv_number-tf.form-control(type='text', name='cvv_number', value= userpayment.cvv_number, placeholder='CVV Number')
+                    .input-group(style='margin-top: 10px;margin-bottom: 10px;')
+                        span.input-group-addon Zip Code
+                        input#zip_code-tf.form-control(type='text', name='zip_code', value=userpayment.zip_code, placeholder='Zip Code')
+                    .input-group(style='margin-top: 10px;margin-bottom: 10px;')
+                        span.input-group-addon Use Type
+                        select#card_use_type-tf.form-control(name='card_use_type', placeholder='Use Type')
+                            option(value='') Select
+                            option(value='personal') Personal
+                            option(value='business') Business
+                    input(type='hidden', value= '', name='type')#type
+                    .form-actions
+                    button(type='button')#payment-form-btn1.btn
+                    button(type='submit')#payment-form-btn2.btn
+    // display form errors in a custom modal window //
+    include modals/form-errors
+    include modals/alert
+block scripts
+    script(src='/lib/jquery/jquery-1.10.2.min.js')
+    script(src='/lib/bootstrap/dist/js/bootstrap.min.js')
+    script(src='/lib/jquery/jquery.mask.js')
+    script(src='/dist/jquery.validate.js')
+    script(src='/vendor/jquery.form.js')
+    script(src='/vendor/bootstrap-modal.js')
+    script(src='/vendor/bootstrap-transition.js')
+    script(src='/js/views/payment.js')
+    script(src='/js/controllers/paymentController.js')
+    script(src='/js/form-validators/paymentValidator.js')
+    script(src='/lib/plugin/jquery.creditCardValidator.js')

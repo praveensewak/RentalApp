@@ -1,0 +1,64 @@
+﻿extends layout2
+block content
+    - user = typeof(udata) != 'undefined' ? udata : { }
+    link(rel="stylesheet" href="css/passenger_signup.css")
+    include signup-header
+    section(class="container")
+        h1
+            div(style="padding-top:15px;") sign up - passenger
+        #update-payment-MSG(style='margin-top: 45px;')
+            div.alert.hide(style='padding: 10px;')
+        form(class="signup" id="account-form" role="form" method="POST")
+            h2 Please tell us a little about yourself
+            h4 Your Personal Information
+            fieldset
+                span
+                    span(class="glyphicon-user")
+                input(type="text" name="first_name" placeholder="First Name" id="first_name-tf")
+                span
+                    span(class="glyphicon-asterisk red")
+            fieldset
+                span
+                    span(class="glyphicon-user")
+                input(type="text" name="last_name" placeholder="Last Name" id="last_name-tf")
+                span
+            h4 Create your account
+            fieldset
+                span
+                    span(class="glyphicon-phone")
+                input(type="tel" name="phone_number" placeholder="Cell Number" id="phone_number-tf")
+                span
+            fieldset
+                span
+                    span(class="glyphicon-envelope")
+                input(type="email" name="email" placeholder="email" id="email-tf")
+                span
+            fieldset
+                span
+                    span(class="glyphicon-lock")
+                input(type="password" name="password" placeholder="Password..." id="password-tf")
+                span
+                    span(class="glyphicon-asterisk red")
+            input(type="hidden", id="fra", name="fra",value= 'false')
+            input(type="hidden", id="_id", name="_id",value= user._id)
+            input(type="hidden", id="registration_token", name="registration_token",value= user.registration_token)
+
+            button(type="submit" id="account-form-btn2") submit
+            button(type="reset" id="account-form-btn1") cancel
+            include modals/alert
+            include modals/form-errors
+    footer
+
+block content
+
+block scripts
+    script(src='/lib/jquery/jquery-1.10.2.min.js')
+    script(src='/lib/bootstrap/dist/js/bootstrap.min.js')
+    script(src='/vendor/jquery.form.js')
+    script(src='/lib/jquery/jquery.mask.js')
+    script(src='/vendor/bootstrap-modal.js')
+    script(src='/vendor/bootstrap-transition.js')
+    script(src='/js/views/signup.js')
+    script(src='/js/controllers/signupController.js')
+    script(src='/js/form-validators/emailValidator.js')
+    script(src='/js/form-validators/accountValidator.js')

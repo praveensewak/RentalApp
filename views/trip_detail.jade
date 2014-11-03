@@ -1,0 +1,118 @@
+extends layout
+block content
+    link(rel="stylesheet", href="/css/trip-detail.css")
+    include header
+    - o.trip_fare = o.trip_fare?o.trip_fare : 0
+    - o.trip_tip = o.trip_tip?o.trip_tip : 0
+    - o.trip_grandtotal = o.trip_grandtotal?o.trip_grandtotal : 0
+    section.container
+        .row
+            .col-lg-3
+                include nav_menu
+            .col-lg-9
+                section.main-content-area
+                    div.row
+                        div.col-lg-12
+                            header
+                                h1 Your Trip
+                                h2= moment(o.tripdatetime).format('MMMM Do YYYY, h:mm:ss a')
+                    div.row
+                        div.col-lg-12
+
+
+
+                    div.row
+                        div.col-lg-12
+                            article.main-content
+                                div.row
+                                    div.col-lg-6
+                                        section.map
+                                            figure
+                                                img(src="https://www.google.com/maps/api/staticmap?center="+o.trip_start_latitude+","+o.trip_start_longitude+"&zoom=12&maptype=roadmap&sensor=fals&size=400x500&markers=size:tiny%7color:blue%7Clabel:C%7C"+o.trip_start_latitude+","+o.trip_start_longitude+"&markers=size:tiny%7color:green%7Clabel:G%7C"+o.trip_end_latitude+","+o.trip_end_longitude+"&path=weight:3%7Ccolor:red%7Cenc:"+o.overview_polyline+"&key=AIzaSyBvj2J7McZL_SkQDRC-Rc8RKvHM1Mvw0GA")
+                                                figcaption
+                                                    section.summary
+                                                        section.start
+                                                            div.icon-circle.red
+                                                            div
+                                                                section.time= moment(o.trip_start_datetime).format('h:mm:ss a')
+                                                                section.location= o.trip_start_address
+                                                        section.end
+                                                            div.icon-circle.blue
+                                                            div
+                                                                section.time= moment(o.trip_end_datetime).format('h:mm:ss a')
+                                                                section.location= o.trip_end_address
+
+                                                        section.extra
+                                                            span.car
+                                                                span taxi-X
+                                                            span.distance
+                                                                span.miles= (o.trip_actual_distance/1609.344).toFixed(4)
+
+                                                            span.duration= moment.utc(o.trip_actual_duration).format("HH:mm:ss")
+
+                                    div.col-lg-6
+                                        section.fare-details
+                                            h1 Fare Breakdown
+                                            section.calculation
+                                                table.fare
+                                                    tbody
+                                                        tr
+                                                            td Fare
+                                                            td= (o.trip_fare).toFixed(2)
+                                                        tr
+                                                            tdDistance
+                                                            td16.97
+                                                        tr
+                                                            td Tip (20%)
+                                                            td= (o.trip_tip).toFixed(2)
+                                                    tfoot
+                                                        tr.sub-total
+                                                            th Total
+                                                            th
+                                                                span
+                                                                    span.currency $
+                                                                    span.amount= (o.trip_grandtotal).toFixed(2)
+                                                table.fee
+                                                    tbody
+
+                                                    tfoot.charged
+                                                        tr
+                                                            th
+                                                                label charged
+                                                                section.card-details
+                                                                    img.icon(src="/images/ae-card-icon.png")
+                                                                    span.usage Personal
+                                                                    span.number 5560
+                                                            th
+                                                                span.total
+                                                                    span.curncey $
+                                                                    span.amount= (o.trip_grandtotal).toFixed(2)
+                    div.row
+                        div.col-lg-12
+                            footer
+                                div.row
+                                    div.col-lg-2.driver-pic
+                                        div
+                                            img(src= o.driver.user_image)
+                                    div.col-lg-4 You rode with #{o.driver.first_name}
+                                    div.col-lg-3 Rate your ride
+                                    div.col-lg-3.rating
+                                        span
+                                        span
+                                        span
+                                        span
+                                        span
+include modals/alert
+    include modals/confirm
+block scripts
+    script(src='/lib/jquery/jquery-1.10.2.min.js')
+    script(src='/lib/bootstrap/dist/js/bootstrap.min.js')
+    script(src='/vendor/jquery.form.js')
+    script(src='/lib/plugin/jExpand.js')
+    script(src='/lib/plugin/stupidtable.js')
+    script(src='/lib/bootstrap/js/modal.js')
+    script(src='/lib/bootstrap/js/transition.js')
+    script(src='/js/form-validators/accountValidator.js')
+    script(src='https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&dummy=.js')
+    script(src='/js/views/home.js')
+    script(src='/js/controllers/homeController.js')

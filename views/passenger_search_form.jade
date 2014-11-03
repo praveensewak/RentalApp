@@ -1,0 +1,29 @@
+mixin options(array)
+    each item in array
+        if item == query.status
+            option(selected="selected") #{item}
+        else
+            option #{item}
+
+- query = typeof query != 'undefined' ? query : {};
+- query.enddate = typeof query.trip_start_datetime != 'undefined' ? query.trip_start_datetime['$lte'] : ''
+- query.startdate = typeof query.trip_start_datetime != 'undefined' ? query.trip_start_datetime['$gte']  : ''
+- query.status = typeof query.trip_status != 'undefined' ? query.trip_status : ''
+- query.startdate = typeof query.startdate != 'string' ? moment(query.startdate).format('MM-DD-YYYY') : ''
+- query.enddate = typeof query.enddate != 'string' ? moment(query.enddate).format('MM-DD-YYYY') : ''
+
+div(class="driver-search-form", style="height: 60px; display: table;")
+    form(class="form-inline" action="/api/passenger/trip?isWeb=true" method="POST" role="form" style="display: table-cell; vertical-align: middle; text-align:center;")
+        div(class="form-group")
+            div(class="input-group")
+                div(class="input-group-addon") Start Date
+                input(placeholder="Start Date" class="form-control" type="text" id="startdate" name="startdate" onfocus="this.type='date'" onblur="this.type='text'" value="#{query.startdate}")
+        div(class="form-group")
+            div(class="input-group")
+                div(class="input-group-addon") End Date
+                input(placeholder="End Date" class="form-control" type="text" id="enddate" name="enddate" onfocus="this.type='date'" onblur="this.type='text'" value="#{query.enddate}")
+        div(class="input-group")
+            div(class="input-group-addon") Status
+            select(class="form-control", name="status", style="width: 155px;")
+                +options(['all', 'initiated','arrived','tripstarted','tripended','cancelled' ])
+        button(type="submit" class="btn btn-default", style="margin-left: 5px;") Filter

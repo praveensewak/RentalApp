@@ -1,0 +1,66 @@
+
+- user = typeof(udata) != 'undefined' ? udata : { }
+
+nav
+    .header
+        .figure.user
+            a(href='/my_account')
+                -if(user.user_image != 'undefined' || user.user_image != ''){
+                    img#imagePreviewMain(src=user.user_image)
+                -}else{
+                    img.user-logo(src="/images/user-logo-large.png")
+                -}
+            figcaption.user-name #{user.first_name}
+    ul
+        li
+            img(src="/images/my-trip-icon.png")
+            span.text
+                a(href='/home') Home
+        li
+            img(src="/images/profile-icon.png")
+            span.text
+                a(href='/my_account') Profile
+        li
+            img(src="/images/my-trip-icon.png")
+            span.text
+                a(href='/driver/trips?isWeb=true') My Trips
+        li
+            img(src="/images/payment-icon.png")
+            span.text
+                a(href='/DriverBankDetails') Bank Details
+        li
+            img(src="/images/payment-icon.png")
+            span.text
+                a(href='/DriverDocuments') Documents
+        //li
+        //    img(src="/images/payment-icon.png")
+        //    span.text
+        //        a(href='#') Cab
+        //li
+        //    img(src="/images/payment-icon.png")
+        //    span.text
+        //        a(href='#') Trip Invoices
+        //li
+        //    img(src="/images/payment-icon.png")
+        //    span.text
+        //        a(href='#') Drivers
+        //li
+        //    img(src="/images/payment-icon.png")
+        //    span.text
+        //        a(href='#') Live Status
+        li
+            img(src="/images/payment-icon.png")
+            span.text
+                a(href='/support') Support
+        li
+            img(src="/images/payment-icon.png")
+            span.text
+                a(href='/FAQ') FAQs
+        li
+            img(src="/images/my-trip-icon.png")
+            span.text
+                a(href='/account_security') Change Password
+        li
+            img(src="/images/logout-icon.png")
+            span.text
+                a(href='#Logout').logout Log Out

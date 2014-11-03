@@ -1,0 +1,147 @@
+@html.extend('layout', function(model){
+
+  @html.block("body", function (model) {
+  <script>
+
+
+$().ready(function() {
+     $('#phone_number').mask('(000) 000-0000');
+	var container = $('#div_notification');
+
+
+	$("#register-form").validate({
+	errorContainer: container,
+    		errorLabelContainer: $("ol", container),
+    		wrapper: 'li',
+      rules: {
+        first_name:{
+                           required: true,
+                            minlength: 2
+                          },
+        last_name:{
+                                            required: true,
+                                             minlength: 2
+                                           },
+        email: {
+          required: true,
+          email: true
+        },
+        password:{
+        required:true,
+        minlength: 8
+        },
+        phone_number:{
+        required:true,
+        minlength: 14
+        },
+        role: {         required: true,
+        				minlength: 1
+        			}
+      },
+      messages: {
+
+         first_name: {
+                                  required: "Please enter your first name",
+                                  minlength: "Please enter complete first name"
+                                },
+        last_name: {
+                                                   required: "Please enter your last name",
+                                                   minlength: "Please enter complete first name"
+                                                 },
+        email: {
+            required: "We need your email address to contact you",
+            email: "Your email address must be in the format of name@domain.com"
+        },
+            password: {
+                                                                           required: "Please enter password",
+                                                                           minlength: "Password should atleast 8 characters long"
+                                                                         }
+            ,
+
+                    phone_number: {
+                                                               required: "Please enter your phone number",
+                                                               minlength: "Please enter complete phone number"
+                                                             }
+                    ,
+                    role: {                 required: "Please select atleast one role",
+                            				minlength: "Please select atleast one role"
+                            			}
+      }
+    });
+
+	$(".cancel").click(function() {
+		validator.resetForm();
+	});
+});
+
+  </script>
+    <h3>Message for registration</h3>
+    @if (model.message) {
+      <p>@model.message</p>
+    }
+
+          <div class="container" id='div_notification'>
+          	<h4>Please fix following errors in order to register yourself.</h4>
+          	<ol>
+          	    <li><label for="first_name" class="error">Please enter first name (at least 2 characters )</label></li>
+                <li><label for="last_name" class="error">Please enter last name  (at least 2 characters )</label></li>
+          		<li><label for="email" class="error">Please enter your email address</label></li>
+          		<li><label for="password" class="error">Please enter password  (at least 8 characters )</label></li>
+          		<li><label for="phone_number" class="error">Please enter your phone <b>number</b> (between 2 and 8 characters)</label></li>
+          	</ol>
+          </div>
+
+    <form action="/register" method="post" role="form" class="form-horizontal" name="register-form" id="register-form">
+
+      <div class="form-group">
+        <label class="control-label col-lg-2">First Name</label>
+        <div class="col-lg-5">
+          <input type="text" name="first_name" id="first_name" class="form-control" placeholder="first name" maxlength="30" required />
+        </div>
+      </div>
+            <div class="form-group">
+              <label class="control-label col-lg-2">Last Name</label>
+              <div class="col-lg-5">
+                <input type="text" name="last_name" id="last_name" class="form-control" placeholder="last name" maxlength="30" required />
+              </div>
+            </div>
+      <div class="form-group">
+        <label class="control-label col-lg-2">User ID (Email)</label>
+        <div class="col-lg-5">
+          <input name="email" id="email" class="form-control" placeholder="email"  required type="email" maxlength="60"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-lg-2">Password</label>
+        <div class="col-lg-5">
+          <input type="password" name="password" id="password" class="form-control" placeholder="password" maxlength="15" required />
+        </div>
+      </div>
+      <div class="form-group">
+              <label class="control-label col-lg-2">Phone Number</label>
+              <div class="col-lg-5">
+                <input name="phone_number" id="phone_number" class="form-control" placeholder="phone number" type="text"/>
+              </div>
+            </div>
+            <div class="form-group">
+                                      <label class="control-label col-lg-2"> <input type="checkbox" class="checkbox" id="register_passenger" name="role" style="width: 25px;height: 25px;margin-left: 140px;"></label>
+                                      <div class="col-lg-5">
+                                       <label class="control-label"> Register as passenger </label>
+                                      </div>
+                                    </div>
+            <div class="form-group">
+                          <label class="control-label col-lg-2"> <input type="checkbox" class="checkbox"  id="register_driver" name="role" style="width: 25px;height: 25px;margin-left: 140px;"></label>
+                          <div class="col-lg-5">
+                           <label class="control-label"> Register as driver </label>
+                          </div>
+                        </div>
+      <div class="form-group">
+        <div class="col-lg-offset-2 col-lg-5"><input type="submit" value="Register" class="btn btn-primary" id="btn_register" /></div>
+      </div>
+      <div class="form-group">
+        <p class="text-muted">Or <a href="/login">login</a> if you already have an account.</p>
+      </div>
+    </form>
+
+  })
+})

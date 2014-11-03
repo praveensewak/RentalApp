@@ -1,0 +1,29 @@
+//
+   Created by Asif on 7/26/2014.
+
+extends layout
+
+block content
+    include header
+    .section.container
+        include nav_menu
+        section.content
+            include driver_profile
+        hr
+        footer
+            div.row
+                div.col-lg-12
+                    p Copyright &copy;  2014
+    include modals/alert
+    include modals/confirm
+block scripts
+    script(src='/lib/jquery/jquery-1.10.2.min.js')
+    script(src='/lib/bootstrap/dist/js/bootstrap.min.js')
+    script(src='/lib/jquery/jquery.mask.js')
+    script(src='/vendor/jquery.form.js')
+    script(src='/lib/bootstrap/js/modal.js')
+    script(src='/lib/bootstrap/js/transition.js')
+    script(src='/js/controllers/homeController.js')
+    script(src='/js/views/driver_account.js')
+    script(src='/js/controllers/driverAccountController.js')
+    script(src='/js/form-validators/driverAccountValidator.js')

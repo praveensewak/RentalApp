@@ -1,0 +1,31 @@
+//
+   Created by Asif on 8/23/2014.
+extends layout
+block content
+    include header
+    .section.container
+        include nav_menu
+        // preset form values if we receive a userdata object //
+        - user = typeof(udata) != 'undefined' ? udata : { }
+        -if(user.user_type == 'passenger'){
+            section.content
+                include passenger_preference_form
+        -}
+        hr
+        footer
+            div.row
+                div.col-lg-12
+                    p Copyright &copy;  2014
+    include modals/alert
+    include modals/confirm
+block scripts
+    script(src='/lib/jquery/jquery-1.10.2.min.js')
+    script(src='/lib/bootstrap/dist/js/bootstrap.min.js')
+    script(src='/vendor/jquery.form.js')
+    script(src='/lib/bootstrap/js/modal.js')
+    script(src='/lib/bootstrap/js/transition.js')
+    script(src='/js/controllers/homeController.js')
+    script(src='/js/views/passengerPreference.js')
+    script(src='/js/controllers/passengerPreferenceController.js')
+    script(src='/js/form-validators/passengerPreferenceValidator.js')
+

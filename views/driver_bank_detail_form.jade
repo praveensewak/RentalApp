@@ -1,0 +1,51 @@
+//
+   Created by Asif on 9/2/2014.
+
+// preset form values if we receive a userdata object //
+- user = typeof(udata) != 'undefined' ? udata : { }
+- driver = typeof(ddata) != 'undefined' ? ddata : { }
+// store the userId on the client side in a hidden input field //
+input#userId(type='hidden', name='user_id' value= user._id)
+#account-form-container.mainbox.col-md-4.col-sm-offset-2(style='margin-top: 25px;width:850px;')
+    .panel.panel-info
+        .panel-heading
+            .panel-title Bank Detail - Enter your bank account information
+        .panel-body(style='padding-top: 30px;')
+            #update-payment-MSG
+                div.alert.hide(style='padding: 10px;')
+            form( method="post")#account-form.form-horizontal(role='form')
+                .input-group(style='margin-top: 10px;margin-bottom: 10px;')
+                    span.input-group-addon(style='width:300px;')
+                        div Bank Name
+                    input#bank_name-tf(style='width:550px;').form-control(type='text', name='bank_name', value= driver.bank_name, placeholder='Bank Name',disabled='disabled', maxlength=100)
+                .input-group(style='margin-top: 10px;margin-bottom: 10px;')
+                    span.input-group-addon(style='width:300px;')
+                        div Routing Number
+                    input#bank_routing_number-tf(style='width:550px;').form-control(type='text', name='bank_routing_number', value= driver.bank_routing_number, placeholder='Routing Number',disabled='disabled', maxlength=30)
+                .input-group(style='margin-top: 10px;margin-bottom: 10px;')
+                    span.input-group-addon(style='width:300px;')
+                        div Bank Account Number
+                    input#bank_account_number-tf(style='width:550px;').form-control(type='text', name='bank_account_number', value= driver.bank_account_number, placeholder='Account Number',disabled='disabled', maxlength=30)
+                .input-group(style='margin-top: 10px;margin-bottom: 10px;')
+                    span.input-group-addon(style='width:300px;')
+                        div Verify Bank Account Number
+                    input#verify_bank_account_number-tf(style='width:550px;').form-control(type='text', name='verify_bank_account_number', value= driver.bank_account_number, placeholder='Verify Account Number',disabled='disabled', maxlength=30)
+                .input-group(style='margin-top: 10px;margin-bottom: 10px;')
+                    span.input-group-addon(style='width:300px;')
+                        div Bank Phone Number
+                    input#bank_phone_number-tf(style='width:550px;').form-control(type='text', name='bank_phone_number', value= driver.bank_phone_number, placeholder='Phone Number',disabled='disabled', maxlength=30)
+                .input-group(style='margin-top: 10px;margin-bottom: 10px;')
+                    span.input-group-addon(style='width:300px;')
+                        div Bank Contact Person
+                    input#bank_contact_person-tf(style='width:550px;').form-control(type='text', name='bank_contact_person', value= driver.bank_contact_person, placeholder='Bank Contact Person',disabled='disabled', maxlength=30)
+                .input-group(style='margin-top: 10px;margin-bottom: 10px;')
+                    span.input-group-addon(style='width:300px;')
+                        div Notes
+                    input#notes-tf(style='width:550px;').form-control(type='text', name='notes', value= driver.notes, placeholder='Notes',disabled='disabled', maxlength=500)
+                .form-actions
+                button(type='button')#account-form-edit.btn
+                button(type='button')#account-form-cancel.btn.hide
+                button(type='submit')#account-form-btn2.btn.hide
+// display form errors in a custom modal window //
+include modals/form-errors
+include modals/lost-password

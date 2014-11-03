@@ -1,0 +1,65 @@
+@html.extend('layout', function(model){
+
+  @html.block("body", function (model) {
+  <script>
+
+
+$().ready(function() {
+
+    $('#registration_code').mask('000000');
+
+	var container = $('#div_notification');
+
+
+
+	$("#register-verify").validate({
+	errorContainer: container,
+    		errorLabelContainer: $("ol", container),
+    		wrapper: 'li',
+      rules: {
+
+        registration_code:{
+         required: true,
+          minlength: 6,
+                      maxlength: 6
+        }
+      },
+      messages: {
+        registration_code: {
+                          required: "Please enter verification code",
+                          minlength: "Please enter complete code"
+                        }
+      }
+    });
+
+	$(".cancel").click(function() {
+		validator.resetForm();
+	});
+});
+
+  </script>
+    @if (model.message) {
+      <p>@model.message</p>
+    }
+
+              <div class="container" id='div_notification'>
+              	<h4>Please fix following errors in order to submit the form.</h4>
+              	<ol>
+                </ol>
+              </div>
+
+    <form method="post" role="form" class="form-horizontal"  name="register-verify" id="register-verify">
+<h3>Code has been sent to your number, Please enter code here.</h3>
+      <div class="form-group">
+        <label class="control-label col-lg-1">Verification Code</label>
+        <div class="col-lg-5">
+          <input type="text" name="registration_code" id="registration_code" class="form-control" placeholder="registration_code" maxlength="6"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-offset-1 col-lg-5"><input type="submit" value="Verify" class="btn btn-primary" /></div>
+      </div>
+    </form>
+
+  })
+})

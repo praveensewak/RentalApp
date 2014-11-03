@@ -1,0 +1,19 @@
+//
+   Created by Asif on 7/12/2014.
+
+extends layout2
+block content
+    include signup-header
+    include driver_info3
+    include modals/alert
+block scripts
+    script(src='/lib/jquery/jquery-1.10.2.min.js')
+    script(src='/lib/bootstrap/dist/js/bootstrap.min.js')
+    script(src='/lib/jquery/jquery.mask.js')
+    script(src='/vendor/jquery.form.js')
+    script(src='/vendor/bootstrap-modal.js')
+    script(src='/vendor/bootstrap-transition.js')
+    script(src='/js/views/driver_signup.js')
+    script(src='/js/controllers/driverSignupController.js')
+    script(src='/js/form-validators/emailValidator.js')
+    script(src='/js/form-validators/driverSignupValidator.js')
